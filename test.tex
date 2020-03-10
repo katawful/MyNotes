@@ -8,8 +8,9 @@
 
 \begin{document}
 \maketitle
+\tableofcontents
 \newpage
-\chapter{Ch. 01: Getting Started}
+\chapter{Getting Started}
 \section{Introduction}
 Every C++ program has one or more functions, with one of these functions being \verb|main()|. A function is defined with four parts:
 \begin{center}
@@ -56,7 +57,7 @@ In the \verb|iostream| library there are two types of streams: \verb|istream| an
 \begin{center}
 	\begin{tabular}{ |c|c|c| }
 		\hline
-		Function & Use & Note \\
+		\textbf{Function} & \textbf{Use} & \textbf{Note} \\
 		\hline
 		\verb|cin| & Standard input & Type \verb|istream| \\
 		\hline
@@ -127,7 +128,7 @@ A \verb|for| loop contains three parts in its header: a init statement, a condit
 \begin{center}
 	\begin{tabular}{ |c|c|c| }
 		\hline
-		Part & Example & Description \\
+		\textbf{Part} & \textbf{Example} & \textbf{Description} \\
 		\hline
 		Init statement & \verb|int val = 1;| & Defines a variable for the loop \\
 		\hline
@@ -147,5 +148,96 @@ for ( int val = 1; val <= 10; ++val) {
 It is important to note that only the first two parts are ended by a semicolon, the expression is not ended by a semicolon. 
 \section{Data Structures}
 In C++ we often want to be able to define our own objects, types, and functions. This is, in fact, what makes C++ so powerful. We can arbitrarily add in our own classes that behave like standard classes. 
-A data class defines a type along with a collection of operations related to that type. In order to include these we must have a file (typically '*.h') and include it into our program. We can do that with \verb|#include "Our_class.h"|.
+A data class defines a type along with a collection of operations related to that type. In order to include these we must have a file (typically '*.h') and include it into our program. We can do that with \verb|#include "Our_class.h"|. In a class we can have member functions, functions defined as part of a class.
+These are sometimes called methods. We use these on objects of the class type and format as such: \verb|object.method()|.
+\section{Notes}
+
+\begin{itemize}
+	\item A semicolon ends a statement.
+	\item The scope operator (\verb|::|) is used to define the name of an object.
+	\item We can read from an input stream by using \verb|while ( cin << input )|
+	\item We can read from a file and output to a file: \\ \verb|program <infile >outfile|
+\end{itemize}
+
+\chapter{Variables and Basic Types}
+\section{Arithmetic Types}
+There are many types in standard C++ libraries. The arithmetic types allow arithmetic operations to be applied to them. There are two basic types: integral and floating point types. Both allow different sizes for different uses and integral types can be either signed or unsigned.
+It is best practice then to restrict the types one uses. If only integer math is needed then floats shouldn't be used. If a value will never be negative, the integer should be unsigned. 
+Floats should always be double precision, they are more accurate and take up a bit more in memory.
+Types like char and boolean should never be used for arithmetic.
+
+\noindent We can convert one type to another on the fly depending on some conditions. This lets us treat some variables differently when we want to. There are some limitations and conditions we should be aware of:
+\begin{center}
+	\begin{tabular}{ |c|c| }
+		\hline
+		\textbf{Conversion} & \textbf{Conditions} \\
+		\hline
+		Non-bool $\rightarrow$ bool & 0 is false, otherwise true \\
+		\hline
+		Bool $\rightarrow$ non-bool & True is 1, false is 0 \\
+		\hline
+		Float $\rightarrow$ integral & Truncated, integer component is kept \\
+		\hline
+		Integral $\rightarrow$ float & Fractional part is 0, can lose precision \\
+		\hline
+		Out-of-range $\rightarrow$ unsigned & Remainder of the value modulo \\
+		\hline
+		Out-of-range $\rightarrow$ signed & Undefined, produces unexpected results \\
+		\hline
+	\end{tabular}
+\end{center}
+\section{Literals}
+Literals are self-evident value. For instance ``3'' is a literal. We know what it means just looking at it. There are many types of literals:
+\begin{center}
+	\begin{tabular}{ |c|c| }
+		\hline
+		\textbf{Type} & \textbf{Example} \\
+		\hline
+		Decimal & 3 \\
+		\hline
+		Octal & 0\# \\
+		\hline
+		Hexidecimal & 0x\# \\
+		\hline
+		Character & `c' \\
+		\hline
+		String & ``word'' \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\section{Escape Sequences}
+Sometimes we want to enter a specific kind of input, but due to the way C++ we can't input them as we would want to. We use a backslash $\backslash$ folowed by a neccessary character. There are many escape sequences and they can be used in many places:
+\begin{center}
+	\begin{tabular}{ |c|c| }
+		\hline
+		\textbf{Escape Sequence} & \textbf{Function} \\
+		\hline
+		$\backslash$n & Newline \\
+		\hline
+		$\backslash$t & Horizontal tab \\
+		\hline
+		$\backslash$a & Terminal alert/bell \\
+		\hline
+		$\backslash$v & Vertical tab \\
+		\hline
+		$\backslash$b & Backspace \\
+		\hline
+		$\backslash$`` & Double quote \\
+		\hline
+		$\backslash$$\backslash$ & Backslash \\
+		\hline
+		$\backslash$? & Question mark \\
+		\hline
+		$\backslash$` & Single quote \\
+		\hline
+		$\backslash$r & Carriage return \\
+		\hline
+		$\backslash$f & Form feed \\
+		\hline
+	\end{tabular}
+\end{center}
+One can also use octal/hex values with escape sequences to insert a specific character (such as a non-English character, symbol, ect...)
+\section{Variables}
+Variables in C++ are named storage that can be manipulated and has a type. The type determines size and layout of memory, its range of values, and set of operations possible on the variable.
 \end{document}

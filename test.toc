@@ -1,0 +1,18 @@
+\contentsline {chapter}{\numberline {1}Getting Started}{2}
+\contentsline {section}{\numberline {1.1}Introduction}{2}
+\contentsline {section}{\numberline {1.2}Compiling}{3}
+\contentsline {subsection}{\numberline {1.2.1}The GNU Compiler Collection: GCC}{3}
+\contentsline {section}{\numberline {1.3}Input/Output}{3}
+\contentsline {section}{\numberline {1.4}Namespaces}{3}
+\contentsline {subsection}{\numberline {1.4.1}Headers}{4}
+\contentsline {section}{\numberline {1.5}Comments}{4}
+\contentsline {subsection}{\numberline {1.5.1}Single-line Comments}{4}
+\contentsline {subsection}{\numberline {1.5.2}Paired Comments}{4}
+\contentsline {section}{\numberline {1.6}The $for$ Statement}{5}
+\contentsline {section}{\numberline {1.7}Data Structures}{5}
+\contentsline {section}{\numberline {1.8}Notes}{6}
+\contentsline {chapter}{\numberline {2}Variables and Basic Types}{7}
+\contentsline {section}{\numberline {2.1}Arithmetic Types}{7}
+\contentsline {section}{\numberline {2.2}Literals}{7}
+\contentsline {section}{\numberline {2.3}Escape Sequences}{8}
+\contentsline {section}{\numberline {2.4}Variables}{8}
