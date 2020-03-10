@@ -1,0 +1,151 @@
+\documentclass[12pt, a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+
+\title{C++ Primer Notes}
+\author{Kat}
+\date{\today}
+
+\begin{document}
+\maketitle
+\newpage
+\chapter{Ch. 01: Getting Started}
+\section{Introduction}
+Every C++ program has one or more functions, with one of these functions being \verb|main()|. A function is defined with four parts:
+\begin{center}
+	\begin{tabular}{ |c|c| }
+		\hline
+		R.T. & Return type \\
+		\hline
+		F.N. & Function type \\
+		\hline
+		P.L. & Parameter list, maybe empty \\
+		\hline
+		F.B. & Function body, inside braces \\
+		\hline
+	\end{tabular}
+\end{center}
+For example, a basic \verb|main()| function would look like this:
+\begin{center}
+\begin{lstlisting}[language=C++]
+	int main() { 
+		return 0;
+	}
+\end{lstlisting}
+\end{center}
+\verb|int| is the return type, with the function \verb|main| requiring an \verb|int| R.T. A semicolon (\verb|;|) closes a statement inside a function. For \verb|main()|, the function returns a status indicator. Thus \verb|return| is required, with \verb|0| indicating a success.
+
+Every data element (called objects in C++) must have a type. The type lets the compiler know what operations are possible on the object. 
+For instance, say we have a variable \verb|v| and the type of \verb|v| is \verb|T|. It would be described as ``\verb|v| has type \verb|T|''
+or ``\verb|v| is a \verb|T|''. Types are integral to C++ and must always be given for any object.
+\section{Compiling}
+C++ is a compiled language, meaning that a compiler is required to take the human friendly language to something a computer can understand.
+This is in contrast to a language like Python in which the language you write in is the language that is run.
+\subsection{The GNU Compiler Collection: GCC}
+Since I am using Linux, the primary C++ compiler of use is GCC. While this has other compilers for different languages, we are concerned with \verb|G++|.
+For simple programs, the primary usage is as follows: 
+
+\begin{center}
+	\verb|$ g++ -o output input.cpp|
+\end{center}
+
+\section{Input/Output}
+C++ doesn't natively handle input and output operations but relies on a built in library called \verb|iostream|. C++ gets input/output data via a stream, a sequence of characters read or written to an IO device that is generated or consumed sequentially. 
+In the \verb|iostream| library there are two types of streams: \verb|istream| and \verb|ostream|. There are a handful of IO objects in this library that we can classify:
+
+\begin{center}
+	\begin{tabular}{ |c|c|c| }
+		\hline
+		Function & Use & Note \\
+		\hline
+		\verb|cin| & Standard input & Type \verb|istream| \\
+		\hline
+		\verb|cout| & Standard output & Type \verb|ostream| \\
+		\hline
+		\verb|cerr| & Standard error & For general errors \\
+		\hline
+		\verb|clog| & Standard log & For general info on the program \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\section{Namespaces}
+C++ has many functions, and some share names between libraries. The compiler and author have to know what object one is referring to. To do this, we prepend a namespace to the object in question and link them with a scope operator:
+
+\begin{lstlisting}[language=C++]
+	std::cout
+\end{lstlisting}
+
+\verb|std| is the standard C++ namespace and most objects in the standard libraries use this namespace. \verb|::| is the scope operator and it lets us describe a namespace within a scope.
+
+\subsection{Headers}
+A header links to a library and we use them in C++ programs via the \verb|#include| director. This is used outside of the function and tells the compiler to include the library while compiling. It is used like so:
+
+\begin{center}
+	\verb|#include <iostream>|
+\end{center}
+\section{Comments}
+Comments are integral to any programming language. They improve readability and help the author and people reading the code to better understand the code at hand.
+In C++ there are two kinds of comments: single-line and paired.
+\subsection{Single-line Comments}
+Single-line comments are made with two forwardslashes, \verb|//|. Everything past this is not read by the compiler up until a newline is made. For example:
+
+\begin{scriptsize}
+\begin{lstlisting}[language=C++]
+std::cout;; // this comment keeps the code in view of the compiler
+// std::cout;
+// in the line above, the code is commented out
+\end{lstlisting}
+\end{scriptsize}
+
+\subsection{Paired Comments}
+A paired comment lets one create large blocks of comments, particularily on multiple lines, without having to use single-line comments for each line.
+A paired comment is started with \verb|/*| and ends on the \emph{first} instance of \verb|*/|. This last part is important and means we can't nest paired comments.
+If we wanted to comment out a section of code that contains a set of paired comments, we would be unable to. For instance:
+
+\begin{flushleft}
+\noindent \verb|/* we start our comment here| \\
+\verb|stuff /* paired */| \\
+\verb|we end our paired here */| \\
+\end{flushleft}
+
+\noindent In this example the paired comment ends in the second line at the first \verb|*/|. This leaves the second \verb|*/| without an initial \verb|/*|.
+This block would thus be invalid. And so in order to comment out paired comments, one should use single-line comments for every line involved.
+\section{The $for$ Statement}
+In C++, \verb|while| loops are very common. The most common of these are \verb|while| loops that increment a value until it reaches a condition set by the author:
+
+\begin{lstlisting}[language=C++]
+while ( i < 10 ) {
+	do stuff;
+	++i
+}
+\end{lstlisting}
+
+\noindent Since this \verb|while| loop is so prominent, C++ introduced a new function to replicate it simpler: the \verb|for| loop.
+A \verb|for| loop contains three parts in its header: a init statement, a condition, and an expression.
+
+\begin{center}
+	\begin{tabular}{ |c|c|c| }
+		\hline
+		Part & Example & Description \\
+		\hline
+		Init statement & \verb|int val = 1;| & Defines a variable for the loop \\
+		\hline
+		Condition & \verb|val <= 10;| & Describes when to end the loop \\
+		\hline
+		Expression & \verb|++val| & What to do after each loop \\
+		\hline
+	\end{tabular}
+\end{center}
+And all together this would become:
+\begin{lstlisting}[language=C++]
+for ( int val = 1; val <= 10; ++val) {
+	stuff;
+	maybe more stuff;
+}
+\end{lstlisting}
+It is important to note that only the first two parts are ended by a semicolon, the expression is not ended by a semicolon. 
+\section{Data Structures}
+In C++ we often want to be able to define our own objects, types, and functions. This is, in fact, what makes C++ so powerful. We can arbitrarily add in our own classes that behave like standard classes. 
+A data class defines a type along with a collection of operations related to that type. In order to include these we must have a file (typically '*.h') and include it into our program. We can do that with \verb|#include "Our_class.h"|.
+\end{document}
