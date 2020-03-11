@@ -207,7 +207,7 @@ Literals are self-evident value. For instance ``3'' is a literal. We know what i
 \end{center}
 
 \section{Escape Sequences}
-Sometimes we want to enter a specific kind of input, but due to the way C++ we can't input them as we would want to. We use a backslash $\backslash$ folowed by a neccessary character. There are many escape sequences and they can be used in many places:
+Sometimes we want to enter a specific kind of input, but due to the way C++ we catn't input them as we would want to. We use a backslash $\backslash$ folowed by a neccessary character. There are many escape sequences and they can be used in many places:
 \begin{center}
 	\begin{tabular}{ |c|c| }
 		\hline
@@ -240,4 +240,39 @@ Sometimes we want to enter a specific kind of input, but due to the way C++ we c
 One can also use octal/hex values with escape sequences to insert a specific character (such as a non-English character, symbol, ect...)
 \section{Variables}
 Variables in C++ are named storage that can be manipulated and has a type. The type determines size and layout of memory, its range of values, and set of operations possible on the variable.
+\subsection{Creating Variables}
+Creating variables is the first thing a variable needs. There are two main ways to do it: a declaration and a definition. A definition is a \emph{declaration} and an \emph{initialization}.
+\subsubsection{Declaration}
+A declaration makes a name known to the program along with its associated type. A declared object does not have any value associated with it, this is known as \textbf{default initialization}. For built in types, default initialized values are 0 when called declared outside of a function and undefined when inside a function:
+\begin{lstlisting}[language=C++]
+int i;	// value is 0
+int main() {
+	int i;	// value is undefined
+}
+\end{lstlisting}
+\noindent Classes can be supplied with their own default values.
+\subsubsection{Initialization}
+Initialization is when you declare and immediately give a value to an object as opposed to assignment which clears out the existing value and gives it a new one.
+There are 4 main ways to initialize an object:
+\begin{lstlisting}[language=C++]
+int x = 0;
+int x = {0}
+int x{0}
+int x(0)
+\end{lstlisting}
+Initializations with curly braces are known as \textbf{list initialization}. These are very specific and the compiler won't compile our code if information is lost (say a float is used in an initialization for an integer)
+
+A definition combines these two things, and as a result you can only define once. You can, however, declare multiple times.
+This is important if we want to carry one variable from one file to another. To do so, we declare or define the variable in a main file then use the keyword \verb|extern| to only declare the variable in other files.
+\section{Identifiers}
+We can name objects in many different ways, but there are some rules. Names used by standard libraries are unavailable (e.g. \verb|cin|) for use. Underscores can't be used more than once in a row, can't begin with an underscore followed by an uppercase letter, and identifiers defined outside of a function can't begin with an underscore. Aside from those exceptions, the rules are fairly lax. Any combination of numbers and letters can be used. Some common ways to create an identifier can be:
+\begin{center}
+	\begin{itemize}
+		\item \verb|wordName|
+		\item \verb|word_Name|
+		\item \verb|Word_name|
+	\end{itemize}
+\end{center}
+\section{Scope}
+A scope is a part of a progam where a name has a certain meaning. Usually these are things enclosed in curly braces. hellp 
 \end{document}
