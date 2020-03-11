@@ -21,3 +21,8 @@
 \contentsline {subsubsection}{Initialization}{9}% 
 \contentsline {section}{\numberline {2.5}Identifiers}{9}% 
 \contentsline {section}{\numberline {2.6}Scope}{10}% 
+\contentsline {section}{\numberline {2.7}Compound Types}{10}% 
+\contentsline {subsection}{\numberline {2.7.1}References}{10}% 
+\contentsline {subsection}{\numberline {2.7.2}Pointers}{10}% 
+\contentsline {subsubsection}{Null Pointers}{11}% 
+\contentsline {subsubsection}{void* Pointers}{11}% 

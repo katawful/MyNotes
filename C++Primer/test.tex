@@ -274,5 +274,31 @@ We can name objects in many different ways, but there are some rules. Names used
 	\end{itemize}
 \end{center}
 \section{Scope}
-A scope is a part of a progam where a name has a certain meaning. Usually these are things enclosed in curly braces. hellp 
-\end{document}
+A scope is a part of a progam where a name has a certain meaning. Usually these are things enclosed in curly braces. A scope can be nested. A \verb|for| inside a \verb|main()| function is nested. Variables defined in the \verb|main()| function are seen by any nested scopes, but a variable defined in a scope is only seen by further nested scopes. This is overridden by the scope operator (\verb|::|).
+\section{Compound Types}
+A compound type is a type defined in terms of another. C++ has multiple compound types but the two discussed here are \textbf{reference} and \textbf{pointer}. Defining these types are a bit more complex than normal types.
+\subsection{References}
+A reference defines an alternative name for an object. A reference refers to another type. We use \verb|&d| for definition, with d being the name being declared. A reference binds to an initializer of another type, and because of this the object being reference \emph{must} be initialized. The reference we are defining must also be the same type as the object we are referencing. It also can't be a literal. We also can't define a reference to a reference.
+\subsection{Pointers}
+A pointer points to another type. It allows indirect access to the object that it points to, but unlike references, it's its own object.
+It doesn't need to be initialized. We define a pointer using \verb|*d| with d being the pointer name. 
+Pointers hold the address of the object it points to. We can get the address using the address-of operator (\verb|&|). The value stored in the pointer can be one of 4 states:
+\begin{center}
+	\begin{enumerate}
+		\item Point to an object
+		\item Point to the location just past the end of the object
+		\item Null, the pointer points to nothing
+		\item Invalid, any value not the ones above
+	\end{enumerate}
+\end{center}
+In order to access the object in which the pointer points to we use dereference the pointer using the dereference operator (\verb|*|). This allows us to perform most operations on the object without modifying the pointer itself.
+
+\noindent Since pointers are objects, we can assign them new values. However, it can be a touch confusing if we want to change the pointer or the object it points to. To change the pointer we \emph{don't} dereference the pointer. Assigning the object a pointer points to requires a dereferenced pointer.
+
+\noindent We can also use pointers in conditions. A pointer is false if its equal to 0, and true otherwise. We can compare two pointers as well. They are equal if they hold the same address (not just the same value).
+\subsubsection{Null Pointers}
+Null pointers can be useful when we don't have an object to point to but still need the pointer around. The best way to initialize a null pointer is to use \verb|nullptr|. There are other methods, but require a preprocessor variable. It is always best to initialize a pointer to something.
+\subsubsection{void* Pointers}
+As pointers are objects they neccessarily have a type. This lets us perform operations on them like any other object. However, that sometimes can get in our way. If we care more about pointers as an address of memory, we don't want to be concerned with the type of the pointer.
+The \verb|void*| pointer lets us create a pointer of unknown type. We can create it simply by type \verb|void *p = &obj|. That pointer can hold an object of any type and a pointer of any type.
+ \end{document} 
