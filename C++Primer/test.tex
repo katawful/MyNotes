@@ -296,9 +296,15 @@ In order to access the object in which the pointer points to we use dereference 
 \noindent Since pointers are objects, we can assign them new values. However, it can be a touch confusing if we want to change the pointer or the object it points to. To change the pointer we \emph{don't} dereference the pointer. Assigning the object a pointer points to requires a dereferenced pointer.
 
 \noindent We can also use pointers in conditions. A pointer is false if its equal to 0, and true otherwise. We can compare two pointers as well. They are equal if they hold the same address (not just the same value).
+\newline We can also apply multiple type of modifiers to a declarator. This lets us have pointers that point to pointers. References to pointers can also be created, but pointers to references cannot as references are not objects. To create a reference to a pointer we simply use the \textbf{dereference operator} while declaring the pointer.
 \subsubsection{Null Pointers}
 Null pointers can be useful when we don't have an object to point to but still need the pointer around. The best way to initialize a null pointer is to use \verb|nullptr|. There are other methods, but require a preprocessor variable. It is always best to initialize a pointer to something.
 \subsubsection{void* Pointers}
 As pointers are objects they neccessarily have a type. This lets us perform operations on them like any other object. However, that sometimes can get in our way. If we care more about pointers as an address of memory, we don't want to be concerned with the type of the pointer.
 The \verb|void*| pointer lets us create a pointer of unknown type. We can create it simply by type \verb|void *p = &obj|. That pointer can hold an object of any type and a pointer of any type.
+
+\section{const Qualifier}
+There are many cases in which we want to keep a variable unchanged. To do this we simply add the qualifier \verb|const| to the beginning of the declaration of the variable. When a \verb|const| is created we cannot change the variable and we will cause an error. Uninitialized \verb|const| variables will also cause errors. However, we are allowed to perform any operation on a \verb|const| that doesn't change the variable.
+\subsection{const References}
+A reference to a \verb|const| cannot be used to change the value. In this case it means we can't make a non-\verb|const| reference to a \verb|const| variable. We can initialize a reference to a \verb|const| with a type that isn't the type of the reference. The compiler does this by creating a temporary variable that holds a \verb|const| of the type in question. A reference to a \verb|const| may refer to a value that isn't a \verb|const|. References to \verb|const| are thus used when we don't want to change the \emph{reference} only.
  \end{document} 
