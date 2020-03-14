@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.3.10)  11 MAR 2020 22:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.3.10)  14 MAR 2020 13:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -81,13 +81,13 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 2.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 2.
-)
+ [1
+
+])
 \tf@toc=\write3
 \openout3 = `test.toc'.
 
- [1
-
-]
+ [2]
 Chapter 1.
 (/usr/share/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2019/09/10 1.8c listings language file
@@ -102,36 +102,65 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 32.
- [2
+ [3
 
-] [3]
+] [4]
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <17.28> on input line 115.
- [4]
+ [5]
 LaTeX Font Info:    Trying to load font information for OML+cmr on input line 119.
  (/usr/share/texmf-dist/tex/latex/base/omlcmr.fd
 File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
 (Font)              Font shape `OML/cmm/m/it' tried instead on input line 119.
- [5] [6]
+ [6] [7]
 Chapter 2.
-[7
+[8
 
-] [8] [9] [10] [11] [12] (./test.aux) ) 
+] [9] [10] [11] [12] [13] [14] [15]
+Chapter 3.
+
+Overfull \hbox (16.19324pt too wide) in paragraph at lines 369--386
+ [] 
+ []
+
+[16
+
+]
+Overfull \hbox (78.14545pt too wide) in paragraph at lines 394--417
+ [] 
+ []
+
+[17]
+Overfull \hbox (67.49582pt too wide) in paragraph at lines 438--457
+ [] 
+ []
+
+
+Overfull \hbox (60.6775pt too wide) in paragraph at lines 465--486
+ [] 
+ []
+
+[18]
+Overfull \hbox (41.20071pt too wide) in paragraph at lines 497--514
+ [] 
+ []
+
+[19] [20] (./test.aux) ) 
 Here is how much of TeX's memory you used:
- 2132 strings out of 492167
- 27352 string characters out of 6131558
+ 2140 strings out of 492167
+ 27423 string characters out of 6131558
  282225 words of memory out of 5000000
- 6531 multiletter control sequences out of 15000+600000
+ 6539 multiletter control sequences out of 15000+600000
  10897 words of font info for 38 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,7n,62p,565b,1451s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34i,7n,62p,577b,1451s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on test.pdf (13 pages, 126212 bytes).
+Output written on test.pdf (21 pages, 145725 bytes).
 PDF statistics:
- 83 PDF objects out of 1000 (max. 8388607)
- 58 compressed objects within 1 object stream
+ 108 PDF objects out of 1000 (max. 8388607)
+ 75 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

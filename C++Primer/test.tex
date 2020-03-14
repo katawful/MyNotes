@@ -307,4 +307,215 @@ The \verb|void*| pointer lets us create a pointer of unknown type. We can create
 There are many cases in which we want to keep a variable unchanged. To do this we simply add the qualifier \verb|const| to the beginning of the declaration of the variable. When a \verb|const| is created we cannot change the variable and we will cause an error. Uninitialized \verb|const| variables will also cause errors. However, we are allowed to perform any operation on a \verb|const| that doesn't change the variable.
 \subsection{const References}
 A reference to a \verb|const| cannot be used to change the value. In this case it means we can't make a non-\verb|const| reference to a \verb|const| variable. We can initialize a reference to a \verb|const| with a type that isn't the type of the reference. The compiler does this by creating a temporary variable that holds a \verb|const| of the type in question. A reference to a \verb|const| may refer to a value that isn't a \verb|const|. References to \verb|const| are thus used when we don't want to change the \emph{reference} only.
+\subsection{const Pointers}
+A pointer to a \verb|const| cannot change the object to which the pointer points. However, a \verb|const| pointer can point to a non-\verb|const| object. We just can't change the object to which the pointer points.
+\subsection{Top-Level and Low-Level const}
+Since a pointer can either be a \verb|const| or point to a \verb|const|, it is important to distinguish what kind of \verb|const| we are referring to. A \textbf{top-level const} indicates that the pointer itself is a \verb|const|. A \textbf{low-level const} indicates that the pointer points to a \verb|const| object. More generally, a low-level \verb|const| refers to the base of a compound type like pointer or reference while top-level \verb|const| refers to the object itself.
+This is important when we copy values. Top-level \verb|const| is ignored when copying. This makes sense since copying an object doesn't change the object. On the other hand, low-level \verb|const| \emph{isn't} ignored when copying. The object itself is a \verb|const| and that can't change.
+\newline In general, we can convert non-\verb|const| to \verb|const| but not the other way around.
+\subsection{Constant Expression}
+Sometimes we want the output of a specific expression, but we don't want that value to be changed. We can use a constant expression that is evaluated at compile time that gives us a constant value of an expression. It lets us confirm that what we have is a \verb|const|. Our use of \verb|constexpr| is limited however. It is generally limited to literal types like arithmetic, pointers, and references. \verb|constexpr| pointers apply to the pointer and not the object it points to.
+\section{Dealing with Types}
+As programs get more complex, types get more complex. Thus we would want to simplify our usage of types as best as we can. 
+\subsection{Type Alias}
+One thing we can do is create type aliases. These are names that are synonyms of another type. One way to create a type alias is by using the \verb|typedef| keyword when declaring a type (e.g. \verb|typedef double wages;|, wages is an alias for double). A limitation though, is that we can only decalare with the \verb|typedef| keyword.
+An \textbf{alias declaration} can simplify this. The syntax is as follows: \verb|using name = type;|. The name is whatever alias name we want. This alias can then be used wherever a type name might appear. An important thing to remember is that an alias made through \verb|typedef| uses the base type and isn't just a name substitution.
+\subsection{auto Type Specifier}
+When types can get too complex, we can use the type specifier \verb|auto| to have the compiler guess what the type is. The compiler has some quirks with respect to \verb|auto| however. It uses the base object, so reference types are ignored for what the reference refers to. It ignores all top level \verb|const|s so we must specify if the type is a \verb|const| if we care about it.
+\subsection{decltype Type Specifier}
+When we want to be more specific and get the deduced type of the item in question, we use \verb|decltype|. This gives us the type of the \emph{operand} rather than the object. This returns top-level \verb|const| and the type of the reference, giving us a good bit more specificity.
+\section{Defining a Data Structure}
+Creating our own data structures is incredibly useful and is relatively simple:
+\begin{lstlisting}[language=C++]
+struct name {
+	x
+};
+\end{lstlisting}
+With x being our data elements. We prepend this to our program and the program pretends that the data was defined in our program. The names in the class must be unique to the class, and we are able to initialize any objects to give them a default initialization value. We can also make it a separate file and include it in our program. The preprocessor does the same prepending as we did. To do that we use: \verb|#include "Data_structure.h"| with ``Data\_structure'' being our data file and in the same location as the source code is compiled in.
+\subsection{Header Guards}
+Obviously we want to include this file in every part of the program that needs it. However, we don't want to risk including it more than one time. Doing so will cause issues. To do that we use preprocessor variables to describe the condition of header file. These are: 
+\begin{center}
+	\begin{tabular}{ |c|c| }
+		\hline
+		\textbf{Variable Type} & \textbf{Variable} \\
+		\hline
+		Defined & \verb|#DEFINE| \\
+		\hline
+		Not defined & No variable \\
+		\hline
+		If defined & \verb|#IFDEF| + \verb|#ENDIF| \\
+		\hline
+		If not defined & \verb|#IFNDEF| + \verb|#ENDIF| \\
+		\hline
+	\end{tabular}
+\end{center}
+These should always be written in a way that the header file is included only once if we want it. The preprocessor variables should also be written in caps to avoid any confusion.
+\section{My Notes}
+\begin{itemize}
+	\item Types are integral to C++
+	\item Types define operations on objects
+	\item Can use header files to define our own types
+	\item Always include header files once using preprocessor variables
+\end{itemize}
+
+\chapter{Strings, Vectors, and Arrays}
+\section{Namespace Declaration}
+Previously, we had to specify the namespace of every function/operator we wanted to use. We can instead set the namespace of a function inside a scope by calling the namespace before a function starts. Generally, these are added underneath our included libraries. They are declared using the \verb|using| declarator,
+e.g. \verb|using std::cout;|. We don't want to use this inside header files however.
+
+\section{Library string Type}
+Using the \verb|std| namespace, the \verb|string| library lets us create and modify strings. We must, of course, initialize the string and there are many ways to do so:
+\begin{center}
+	\begin{tabular}{ |c|c| }
+		\hline
+		\textbf{Initialization} & \textbf{Result} \\
+		\hline
+		\verb|string s1;| & Default initialization, empty string \\
+		\hline
+		\verb|string s2(s1);| & s2 is a copy of s1 \\
+		\hline
+		\verb|string s2 = s1;| & Same as above \\
+		\hline
+		\verb|string s3("value");| & s3 is a copy of string literal, not including the null \\
+		\hline
+		\verb|string s3 = "value";| & Same as above \\
+		\hline
+		\verb|string s4(n, 'c');| & Initialize s4 with \verb|n| copies of character `\verb|c|' \\
+		\hline
+	\end{tabular}
+\end{center}
+\subsection{Direct vs Copy Initialization}
+A copy initialization uses \verb|=| to copy the right object to the left object during creation. A direct initialization doesn't have this.
+We use copy initialization for single initialization, but if we want to initialize a variable from more than one value we must use direct initialization
+(see the initialization of s4).
+\section{string Operators}
+There are many operators for the \verb|string| type. Here are some examples:
+\begin{center}
+	\begin{tabular}{ |c|c| }
+		\hline
+		\textbf{Operator} & \textbf{Function} \\
+		\hline
+		\verb|os << s| & Writes s onto output stream os, returns os \\
+		\hline
+		\verb|is >> s| & Read whitespace separated string from is into s, returns is \\
+		\hline
+		\verb|getline(is, s)| & Read line input from is to s, returns is using newline \\
+		\hline
+		\verb|s.empty()| & Returns true if s is empty, else false \\
+		\hline
+		\verb|s.size()| & Returns the number of characters in s \\
+		\hline
+		\verb|s[n]| & Returns reference to character at position \verb|n| in s, starts from 0 \\
+		\hline
+		\verb|s1 + s2| & Returns string cocantenation of s1 and s2 \\
+		\hline
+		\verb|s1 = s2| & Replaces s1 with a copy of s2 \\
+		\hline
+		\verb|==, !=, <, <=, >, >=| & Equalities are case sensitive and use dictionary sorting. \\
+		\hline
+	\end{tabular}
+\end{center}
+We can read a string from an input buffer in the same manner as we can an integer. The \verb|size()| operator returns the type \verb|string::size_type|.
+The auto/decltype type specifier should be used when using this operator for convenience. It is unsigned.
+The cocantenation operator requires one string to work. 
+
+In addition to these, there are many functions in the \verb|cctype| header that allow control over the characters of a string.
+\subsection{Ranged for}
+Modifying characters in a string is a pretty common thing, and in order to do so we use a reference to the characters in the string.
+Modifying the reference then switching to the next character reference is the best way to work through each character in the string.
+A ranged for is set up as so:
+\begin{lstlisting}[language=C++]
+for ( &c : s)
+	do stuff
+\end{lstlisting}
+\subsection{The Subscript Operator}
+If we want to access a single character in a string, we use the subscript operator (\verb|[]|). Starting at 0, the subscript operator uses the
+\verb|string::size_type| type as the index/subscript. If the index doesn't correspond to a valid character, the subscript is invalid.
+\section{Library vector Type}
+A \verb|vector| in C++ is a collection of objects of the same type, also called a container. Vectors are contained in the \verb|vector| header in the standard namespace, \verb|std|. This lets us create \emph{class templates}. A class template is a way for the compiler to generate classes and functions. For vectors, 
+we need to specify that we want to create a vector of a certain type: \verb|vector<type> name|. This creates the vector type from a template, creating a new type called \verb|vector<type>|. While vectors of references are not possible, there are many ways to create vectors:
+\begin{center}
+	\begin{tabular}{ |c|c| }
+		\hline
+		\textbf{Initializer} & \textbf{Result} \\
+		\hline
+		\verb|vector<T> v1| & Vector v1 holds object of type T, default initialization \\
+		\hline
+		\verb|vector<T> v2(v1)| & v2 has copy of each element in v1 \\
+		\hline
+		\verb|vector<T> v2 = v1| & Same as above \\
+		\hline
+		\verb|vector<T> v3(n, val)| & v3 has \verb|n| elements, each with value val \\
+		\hline
+		\verb|vector<T> v4(n)| & v4 has \verb|n| elements of default-initialization \\
+		\hline
+		\verb|vector<T> v5{a,b,c...}| & v5 has number of elements as initializors \\
+		\hline
+		\verb|vector<T> v5 = {a,b,c...}| & Same as above \\
+		\hline
+	\end{tabular}
+\end{center}
+There's an important distinction that vectors have. Parentheses \verb|()| are for constructing objects while braces \verb|{}| are for list initialization.
+List initialization adds the value to the vector, but object construction creates objects based on specific parameters. 
+The vector \verb|vector<int> v1{10}| creates a vector with \emph{1} object of value \emph{10}.
+The vector \verb|vector<int> v2(10)| creates a vector with \emph{10} objects of value \emph{0}. This is an important distinction and should be thought of.	
+\section{vector Operations}
+There are many vector operations and some are shared between similar library types:
+\begin{center}
+	\begin{tabular}{ |c|c| }
+		\hline
+		\textbf{Operation} & \textbf{Function} \\
+		\hline
+		\verb|v.empty()| & Returns true if v is empty, otherwise false \\
+		\hline
+		\verb|v.size()| & Returns size of vector, the number of elements \\
+		\hline
+		\verb|v.push_back(t)| & Adds element of value t to the end of v \\
+		\hline
+		\verb|v[n]| & Returns reference to element at position \verb|n| \\
+		\hline
+		\verb|v1 = v2| & Replace the elements of v1 with the copy of elements in v2 \\
+		\hline
+		\verb|v1 = {a,b,c...}| & Replace elements in v1 with copy elements in the list \\
+		\hline
+		\verb|==, !=, <, <=, >, >=| & Vectors are equal if they have the same amount \\
+		 & of elements and each element corresponds to the \\
+		 & elements in the other vector, dictionary sorting \\
+		\hline
+	\end{tabular}
+\end{center}
+We can't use a ranged for loop if the body of the loop adds elements to the vector. We can however, access elements in a vector in the same manner as a string.
+The size operation returns a \verb|size_type| type. Use of auto/decltype is encouraged.
+\section{Iterators}
+Iterators allow us to indirectly access elements in a container/object, they let us walk through them. Types with iterators have members that return iterators.
+We can access the beginning and the end iterators in a container by using the \verb|begin()| and the \verb|end()| operators respectively. 
+\verb|begin()| returns the iteraotr that denotes the first element, \verb|end()| returns the iterator positioned one past the end.
+These operators don't care about type, and are mostly used to determine if we have processed all the elements.
+\subsection{Iterator Operations}
+There are a good number of iterator operations:
+\begin{center}
+	\begin{tabular}{ |c|c| }
+		\hline
+		\textbf{Operation} & \textbf{Function} \\
+		\hline
+		\verb|*iter| & Returns reference to element denoted by the iterator iter \\
+		\hline
+		\verb|iter -> mem| & Dereference iter and fetch member mem from underlying element, \\
+				   & replaces \verb|(*iter).mem| \\
+		\hline
+		\verb|++iter| & Increment iterator \\
+		\hline
+		\verb|--iter| & Decrement iterator \\
+		\hline
+		\verb|==, !=| & Only equalities, same if denote same element or off the\\
+			      & end iterators for the same container \\
+		\hline
+	\end{tabular}
+\end{center}
+\subsection{Iterators and Types}
+Library types with iterators define the types \verb|iterator| and \verb|const_iterator|. It is best to use the \verb|const| type when we only need to read from a container.
+The operators \verb|cbegin()| and \verb|cend()| are constant replacers for \verb|begin()| and \verb|end()| respectively.
+We can see if a dereferenced element is empty: \verb|(*iter)empty()| or \verb|iter -> empty()|. The parentheses are important in this case because it calls what the iterator references and not the iterator itself.
+
  \end{document} 
+
