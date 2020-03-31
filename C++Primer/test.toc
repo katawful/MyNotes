@@ -50,3 +50,11 @@
 \contentsline {section}{\numberline {3.6}Iterators}{19}% 
 \contentsline {subsection}{\numberline {3.6.1}Iterator Operations}{19}% 
 \contentsline {subsection}{\numberline {3.6.2}Iterators and Types}{20}% 
+\contentsline {subsection}{\numberline {3.6.3}Iterator Arithmetic}{20}% 
+\contentsline {subsubsection}{Binary Search}{20}% 
+\contentsline {section}{\numberline {3.7}Arrays}{21}% 
+\contentsline {subsection}{\numberline {3.7.1}Pointers and References}{21}% 
+\contentsline {subsection}{\numberline {3.7.2}Accesssing Element in an Array}{21}% 
+\contentsline {subsection}{\numberline {3.7.3}Pointers and Arrays}{22}% 
+\contentsline {subsubsection}{Pointers are Iterators}{22}% 
+\contentsline {subsubsection}{Pointer Arithmetic}{22}% 

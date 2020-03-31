@@ -12,7 +12,7 @@
 \newpage
 \chapter{Getting Started}
 \section{Introduction}
-Every C++ program has one or more functions, with one of these functions being \verb|main()|. A function is defined with four parts:
+Every C++ program has one or more functions, with one of these functions being \verb|main()|. A function is defined with four parts
 \begin{center}
 	\begin{tabular}{ |c|c| }
 		\hline
@@ -517,5 +517,112 @@ Library types with iterators define the types \verb|iterator| and \verb|const_it
 The operators \verb|cbegin()| and \verb|cend()| are constant replacers for \verb|begin()| and \verb|end()| respectively.
 We can see if a dereferenced element is empty: \verb|(*iter)empty()| or \verb|iter -> empty()|. The parentheses are important in this case because it calls what the iterator references and not the iterator itself.
 
+\subsection{Iterator Arithmetic}
+Arithmetic on iterators themselves is very powerful, and some library types support it such as \verb|vector| and \verb|string|.
+It is important to remember that not all iterators support arithmetic so the following are for \verb|vector| and \verb|string| more generally:
+\newline
+\begin{center}
+	\begin{tabular}{ |c|c| }
+		\hline
+		Operation & Function \\
+		\hline
+		\verb|iter + n, iter - n| & Add/subtract integral value to/from an iterator \\
+					  & yields iterator n places from iterator \\
+		\hline
+		\verb|iter += n, iter -= n| & Compound assignment of value \verb|n| \\
+		\hline
+		\verb|iter1 - iter2| & Finds the difference in iterator values, produces \\
+				     & \verb|difference_type| which is signed \\
+		\hline
+		\verb|>, >=, <, <=| & Relational operators, compares value of iterator \\
+		\hline
+	\end{tabular}
+\end{center}
+\subsubsection{Binary Search}
+A common use of iterator arithmetic is for a \verb|binary search|, used to find a particular value in a container.
+The set up of a search is as follows:
+\begin{center}
+	\begin{enumerate}
+		\item Look at item closest to middle 
+		\item If is desired value, end search
+		\item If value is smaller than the middle value, search first half
+		\item Else search second half
+		\item Obtain new midpoint
+		\item Repeat until search is complete
+	\end{enumerate}
+\end{center}
+\section{Arrays}
+An array is a data structure much like a vector, but it is of fixed size and cannot add data element once created.
+We can create an array like so: \verb|a[d]| with \verb|a| being the array name and \verb|d| being the array dimensions.
+The number of elements in an array must be greater than 0 *and* the dimension must be a \emph{constant expression}.
+Arrays, being objects must have a type, either explicitly declared or deduced from a list initialization.
+Size can be autodeduced from a list initialization by ignoring the element in \verb|[]|.
+The list cannot exceed the dimensions of the array. 
+
+This last part is important, since string literals will add a null character when initializing an array with string literals without list initialization.
+The sting literal "test" is 5 characters long unless initialized in a list.
+We cannot initialize an array with a copy of another array nor can we assign one array to another.
+\subsection{Pointers and References}
+Understanding arrays with respect to pointers and references can get complicated:
+\begin{center}
+	\begin{tabular}{ |c|c| }
+		\hline
+		Array Definition & Type \\
+		\hline
+		\verb|int *ptrs[10];| & ptrs is an array of 10 pointers to int \\
+		\hline
+		\verb|int &refs[10];| & ERROR: cannot create an array of references \\
+		\hline
+		\verb|int (*Parr)[10] = &arr;| & Parr points to an array of 10 ints \\
+		\hline
+		\verb|int (&arrRef)[10] = arr;| & arrRef refers to an array of 10 ints \\
+		\hline
+	\end{tabular}
+\end{center}
+Defining arrays can get a touch confusing, so its best to work outwards from the array name instead.
+The first array is a pointer going left, an array of size 10, and those data elements are of type int going left again.
+This should help with the confusion somewhat.
+We can't create an array of references since references aren't objects but we can create an array that refers to another.
+\subsection{Accesssing Element in an Array}
+Accessing elements in an array is very similar to accessing elements in a string or vector.
+Indices start at 0, and we can use the \verb|subscript []| operator to access specific elements in that container.
+We can even use a variable for the subscript index, but that must have the type \verb|size_t|.
+\subsection{Pointers and Arrays}
+Arrays and pointers are intertwined fairly tightly in C++, to the point where there is a special operation in C++ in which we can directly get a pointer to the first element in an array without dereferencing the array exactly:
+
+\verb|int *p = arr;|
+
+The address-of operator (\verb|&|) when applied to an array lets us get a pointer to an object in an array.
+In effect, pointers to arrays act like iterators in the \verb|string| and \verb|vector| container types.
+In most operations on objects of an array type, we can always get a pointer to the first element of an array and perform operations on that.
+\subsubsection{Pointers are Iterators}
+Since pointers to arrays are so special, we can perform all of the same operations on iterators in the \verb|vector| and \verb|string| container type on pointers to arrays.
+To effectively use pointers to arrays as interators we need get the first and one-past-the-last elements of the array.
+Unlike \verb|string| and \verb|vector| types, we can use the subscript operator to get the element one past the last element.
+Obtaining this element is very similar to the \verb|end()| operator in the \verb|string| and \verb|vector| container type.
+And while we can obtain the one-past-the-last element in an array in this manner, it requires knowing the array size in some manner and can cause errors.
+
+Fortunately, \emph{C++11} introduces two new functions for arrays: \verb|begin| and \verb|end|.
+Like the iterator counterparts, these return the first and one-past-the-last elements of the array in question.
+Unlike them, the array versions are not member functions and thus requirement an argument, one array in this case:
+
+\begin{lstlisting}[language=C++]
+	int *beg = begin(arr);
+	int *last = end(arr);
+\end{lstlisting}
+
+These functions are defined in the \verb|iterator| header.
+
+\subsubsection{Pointer Arithmetic}
+Pointers to arrays can take all of the same iterator arithmetic as outlined previously.
+When taking the difference between two pointers, the result is of type \verb|ptrdiff_t| in the header \verb|cstdef|.
+Relational operators on pointers to an array only work when using related objects.
+As we are dealing with pointers, dealing with types can be a touch confusing.
+Just remember what you mean with respect to dereferencing pointers to arrays.
+
+
  \end{document} 
+
+
+
 
