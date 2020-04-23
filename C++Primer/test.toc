@@ -58,3 +58,7 @@
 \contentsline {subsection}{\numberline {3.7.3}Pointers and Arrays}{22}% 
 \contentsline {subsubsection}{Pointers are Iterators}{22}% 
 \contentsline {subsubsection}{Pointer Arithmetic}{22}% 
+\contentsline {section}{\numberline {3.8}Interfacing with Older Code}{23}% 
+\contentsline {subsection}{\numberline {3.8.1}C-Style Character Strings and Library string}{23}% 
+\contentsline {subsection}{\numberline {3.8.2}Initializing a vector with an array}{23}% 
+\contentsline {section}{\numberline {3.9}My Notes}{24}% 

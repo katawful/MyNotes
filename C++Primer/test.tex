@@ -619,6 +619,60 @@ When taking the difference between two pointers, the result is of type \verb|ptr
 Relational operators on pointers to an array only work when using related objects.
 As we are dealing with pointers, dealing with types can be a touch confusing.
 Just remember what you mean with respect to dereferencing pointers to arrays.
+\section{Interfacing with Older Code}
+C++ in many programs will need to interface with other coding languages, namely C.
+It is common to come across this older code and C++ does allow native use of this older style.
+There are two prominent examples here:
+\subsection{C-Style Character Strings and Library string}
+C-style character strings are strings initialized with a series of characters followed by a null character.
+They are, in function, an array of characters.
+We can use C-style strings when we want to use library \verb|string|s but we can't do the reverse.
+Luckily, the \verb|string| library has a member function that lets us return a C-style string: \verb|c_str|
+We give it an established library \verb|string| and it returns a C-style string with the type \verb|const char*|.
+As these strings are arrays, we can't add to them and we have to manage the pointer aspect of arrays.
+If we have a pointer to a C-style string the pointer must point to a null terminated string.
+C-style character strings are initialized like so: \verb|char ca[] = "example";|,
+giving us a character string "example" which has 8 characters in total.
+\begin{center}
+	\begin{tabular}{ |c|c| }
+		\hline
+		\textbf{Operation} & \textbf{Function} \\
+		\hline
+		\verb|strlen(p)| & Returns length of p not including the null character \\
+		\hline
+		\verb|strcmp(p1,p2)| & Compares p1 and p2 for equality; returns 0 if \\
+				     & p1 == p2, 0 \verb|>| if p1 \verb|>| p2, \& 0 \verb|<| if p1 \verb|<| p2 \\
+		\hline
+		\verb|strcat(p1,p2)| & Appends p2 to p1, returns p1 \\
+		\hline
+		\verb|strcpy(p1,p2)| & Copies p2 into p1, returns p1 \\
+		\hline
+	\end{tabular}
+\end{center}
+We cannot compare C-style strings since that would be an operation on pointers, we must use \verb|strcmp|.
+We also cannot directly cocantenate and copy C-style strings into one another, \verb|strcat| and \verb|strcpy| must be used respectively.
+The trouble is that an appropriately sized C-style string must be used to pass off these values and can cause errors since the 
+size of the C-style string \emph{must} be an appopriate size.
+This is a huge source of errors, bugs, and security problems.
+\subsection{Initializing a vector with an array}
+We can't initialize an array with a vector nor can we initialize an array with an array.
+We can, however, initialize a vector with an array:
+\begin{lstlisting}[language=C++]
+	int arr[] = {0,1,2,3,4,5,6,7,8};
+	vector<int> ivec(begin(arr), end(arr));
+\end{lstlisting}
+In effect we are giving the vector the range of some values in an array.
+It doesn't have to be the first and one past the last value of the array.
+We can use any value of the array subscripted:
+\begin{lstlisting}[language=C++]
+	vector<int> subVec (arr + 1, arr + 4);
+\end{lstlisting}
+which gives us a vector filled with values from the array starting at arr[1] and going to arr[3].
+The array values used aren't iterative, so we start from arr[0] then add 1, start from arr[0] then add 4 giving use arr[1], arr[3].
+\section{My Notes}
+\begin{itemize}
+	\item Don't use arrays and pointers unless really needed, this includes C-style character strings
+\end{itemize}
 
 
  \end{document} 
