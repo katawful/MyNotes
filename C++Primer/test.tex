@@ -674,6 +674,57 @@ The array values used aren't iterative, so we start from arr[0] then add 1, star
 	\item Don't use arrays and pointers unless really needed, this includes C-style character strings
 \end{itemize}
 
+\chapter{Expressions}
+An expression contains one or more operands and yields a result when evaluated.
+The most simple expression is a literal.
+When evaluated they are the value of the literal.
+There are two major type of operators: \textbf{unary} and \textbf{binary}.
+\begin{itemize}
+	\item Unary operators act on one operand, such as the address-of (\verb|&|) and the dereference (\verb|*|) operator
+	\item Binary operators act on two operators, such as the equality (\verb|==|) operator and the multiplication (\verb|*|) operator
+\end{itemize}
+There are more operator types but aren't very common.
+
+\section{Understanding Expressions}
+Understanding expressions requires knowing the precedence and associativity of the operators and the order of evaluation of the operands.
+
+Operands of different types can be converted to a common type in an expression if the types in question are similar.
+For instance, an \verb|int| and \verb|float| can be converted to a common type but a \verb|string| and an \verb|int| cannot.
+Small integral types (\verb|bool|, \verb|char|, \verb|short|) can be converted to a larger integral type such as \verb|int|.
+
+We say that an operated is \emph{overloaded} when it has multiple meanings depending on the class type in question.
+The IO library \verb|>>| and \verb|<<| operators are also used in the \verb|string| and \verb|vector| libraries and with iterators.
+
+\section{lvalue and rvalue}
+Since C++ inherits a lot from C, it takes the idea of \verb|lvalues| and \verb|rvalues|.
+Every expression in C++ is either a \verb|lvalue| or a \verb|rvalue|.
+In C, \verb|lvalues| stood on the left-hand side of assignment whereas \verb|rvalues| did not.
+In C++ they have a far more robust meaning.
+Generally a \verb|lvalue| resturns an object or a function while a \verb|rvalue| returns the objects content.
+Essentially \verb|lvalues| refer to the place in memory of an object (much like pointers).
+Because of this we can use an \verb|lvalue| when an \verb|rvalue| is needed but not the reverse.
+
+Many expressions are \verb|lvalues|:
+\begin{itemize}
+	\item Assignment: uses a non-\verb|const| \verb|lvalue| as left-hand operand and yields it left-hand operand as an \verb|lvalue|.
+	\item Address-of: \verb|lvalue| operand, returns a pointer to a operand as an \verb|rvalue|.
+	\item Built-in, \verb|string|, and \verb|vector| dereference and subscript operators all yield \verb|lvalues|.
+	\item Built-in iterator increment/decrement use \verb|lvalue| operands, the prefix versions yield \verb|lvalues| as well.
+\end{itemize}
+
+\section{Order of Evaluation}
+While precedence grouping is useful, it lets us know what operations evaluate before others, it doesn't say everything.
+Precedence in no way tells us in what order operators of the same group evaluate.
+This causes a ton of issues in programs, as the compiler may not detect or do what we want it to.
+As a result, unless order of evaluation is specified, it is best practice to never refer to and change an object in an expression if there is no orderc
+There are four expressions in which order of evaluation is clearly defined:
+\begin{itemize}
+	\item \verb|AND (&&)|
+	\item \verb=OR (||)=
+	\item \verb|Conditional (? :)|
+	\item \verb|Comma (,)| 
+\end{itemize}
+
 
  \end{document} 
 
