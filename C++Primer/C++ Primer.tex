@@ -724,7 +724,140 @@ There are four expressions in which order of evaluation is clearly defined:
 	\item \verb|Conditional (? :)|
 	\item \verb|Comma (,)| 
 \end{itemize}
+\section{Arithmetic Operators}
+Arithmetic operators can be applied to any arithmetic type.
+\begin{center}
+	\begin{tabular}{ |c|c|c| }
+		\hline
+		\textbf{Operator} & \textbf{Function} & \textbf{Use} \\
+		\hline
+		\verb|+| & Unary plus & \verb|+expr| \\
+		\hline
+		\verb|-| & Unary minus & \verb|-expr| \\
+		\hline
+		\hline
+		\verb|*| & Multiplication & \verb|expr * expr| \\
+		\hline
+		\verb|/| & Division & \verb|expr / expr| \\
+		\hline
+		\verb|%| & Modulo/Remainder & \verb|expr % expr| \\
+		\hline
+		\hline
+		\verb|+| & Addition & \verb|expr + expr| \\
+		\hline
+		\verb|-| & Subtraction & \verb|expr - expr| \\
+		\hline
+	\end{tabular}
+\end{center}
+Unary plus returns a copy of the value of the operand.
+Unary minus returns the result of negating the operand.
+In both cases, the type of the operand can be promoted.
+A modulo operation \emph{must} have an integral type.
+\section{Logical and Relation Operators}
+A relation operator takes arithmetic and pointer type operands, where a value of 0 is \verb|false| and anything else is true.
+A logical operator takes any type that can be converted to \verb|bool|.
+In both cases the results are returned as \verb|bool|.
+Operands are also \verb|rvalues| and result in an \verb|rvalue|.
+\begin{center}
+	\begin{tabular}{ |c|c|c|c| }
+		\hline
+		\textbf{Associativity} & \textbf{Operator} & \textbf{Function} & \textbf{Use} \\
+		\hline
+		Right & \verb|!| & Logical NOT & \verb|!expr| \\
+		\hline
+		\hline
+		Left & \verb|<| & Less than & \verb|expr < expr| \\
+		\hline
+		Left & \verb|<=| & Less than or equal to & \verb|expr <= expr| \\	
+		\hline
+		Left & \verb|>| & Greater than & \verb|expr > expr| \\
+		\hline
+		Left & \verb|=>| & Greater than or equal to  & \verb|expr >= expr| \\
+		\hline
+		\hline
+		Left & \verb|==| & Equality & \verb|expr == expr| \\
+		\hline
+		Left & \verb|!=| & Inequality & \verb|expr != expr| \\
+		\hline
+		\hline
+		Left & \verb|&&| & Logical AND & \verb|expr && expr| \\
+		\hline
+		\hline
+		Left & \verb=||= & Logical OR & \verb=expr || expr= \\
+		\hline
+	\end{tabular}
+\end{center}
+Logical AND and logical OR only evaluate the right operand if and only if the left operand doesn't determine the result of the condition.
+For logical AND, the right operand gets evaluated if the left side is \verb|true|.
+For logical OR, the right operand gets evaluated if the left side is \verb|false|.
 
+Relational operators always return \verb|bool| values, making a relation like \verb|i < j < k| not work as intended.
+Instead the result of the relation must be compared individually like so: \verb|i < j && j < k|.
+
+Equality tests, like relations, return and work on \verb|bool|s. 
+This can cause problems.
+Sometimes it is helpful to see if a variable has a value (or doesn't) so we know if we can work on it or not.
+An equality like \verb|if (val == true)| only makes sense if val is a \verb|bool|.
+Essentially, this condition becomes \verb|if (val == 1)|.
+The appropriate usage is to just use the variable itself as its own equality in a condition:
+\verb|if (val)|.
+This will return true if val has any non-zero value.
+\section{Assignment Operator}
+When assigning, the left-hand operand of the assignment operator must be a modifiable \verb|lvalue|.
+This means that literals and arithmetic operators are not allowed as they are \verb|rvalues|.
+\verb|const|s are also not allowed since we can't modify them.
+With the new standard, list initialization (curly braces) are allowed for assignment but if it is of the built-in type narrowing
+conversion is not allowed and only one value is allowed in the list at most.
+You can't list initialize an int with a double.
+However, some library types are not concerned with this.
+\verb|vector| type can use list initialization with less issue.
+
+Assignment is right associative meaning that \verb|i = j = 0| does not behave as expected.
+\verb|j = 0| is the right hand operator for \verb|i|. 
+Thus \verb|i| gets assigned to the result of \verb|j = 0|.
+This is important as we use the assignment operator in more situations.
+
+Assignment has low precedence.
+This is a concern when we want to use assignment in conditions.
+If we were to have a condition like: \verb|if (p = getPtr() != 0| then we run into an issue.
+As assignment has low precedence the condition will get evaluated first.
+So we will evaulate \verb|getPtr() != 0| then assign the result to \verb|p|.
+We need to be liberal with parentheses to stop this being an issue.
+\subsection{Compound Assignment Operators}
+Compound assignment is taking an established variable and assigning it to the value of itself plus some object.
+This is particularly used in arithmetic types.
+\begin{itemize}
+	\item Arithmetic compound assignment: \verb|+=|, \verb|-=|, \verb|*=|, \verb|/=|, \verb|%=|
+	\item Bitwise compound assignment: \verb|<<=|, \verb|>>=|, \verb|&=|, \verb|^=|
+\end{itemize}
+\section{Increment and Decrement Operator}
+There are prefix and postfix increment/decrement operators.
+A prefix will go before the object while a postfix will go after an object.
+A prefix increment/decrement operator will change the object then return the changed value.
+A postfix increment/decrement operator will change the object but return the unchanged value.
+This can cause issues and should only be used when needed.
+It is mostly used for dereferenced objects, allowing use to simutaneously access a value in a vector or string while incrementing.
+A prefix increment will miss values and cause errors.
+
+An increment/decrement operator requires \verb|lvalue| operands and order of operations should be kept in mind.
+\section{Member Access Operator}
+The dot \verb|(.)| and arrow \verb|(->)| operators provide for member access.
+The dot operator fetches a member from an object of class type while the arrow operator is defined so that \verb|ptr->mem| is a synonym for \verb|(*ptr).mem|.
+Member operators have a high precedence, over the dereference operator.
+The arrow operator requires a pointer operand and returns an \verb|lvalue|.
+The dot operator will return an \verb|lvalue| if the object from which the member is fetch is a \verb|lvalue|.
+Else it will return a \verb|rvalue|.
+\section{Conditional Operator}
+The conditional operator allows us to embed small conditions inside expressions.
+
+\verb|cond ? expr1 : expr2|
+
+where expression 1 is returned if the condition is true and expression 2 is returned if the condition is false.
+These expressions need to be the same type or be able to to be converted to a common type if possible.
+A conditional operator has low precedence and returns a \verb|lvalue| only if both expressions are or are converted to a \verb|lvalue|.
+Else the conditional will return a \verb|rvalue|.
+Nesting conditionals is possible where the next conditional is the condition for if the previous conditional is false.
+This can get complicated fast so it's recommended to only use 2-3 conditionals in a nest, else use an if block.
 
  \end{document} 
 
