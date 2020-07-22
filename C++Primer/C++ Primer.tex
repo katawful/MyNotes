@@ -836,7 +836,7 @@ A prefix will go before the object while a postfix will go after an object.
 A prefix increment/decrement operator will change the object then return the changed value.
 A postfix increment/decrement operator will change the object but return the unchanged value.
 This can cause issues and should only be used when needed.
-It is mostly used for dereferenced objects, allowing use to simutaneously access a value in a vector or string while incrementing.
+It is mostly used for dereferenced objects, allowing use to simultaneously access a value in a vector or string while incrementing.
 A prefix increment will miss values and cause errors.
 
 An increment/decrement operator requires \verb|lvalue| operands and order of operations should be kept in mind.
@@ -858,6 +858,129 @@ A conditional operator has low precedence and returns a \verb|lvalue| only if bo
 Else the conditional will return a \verb|rvalue|.
 Nesting conditionals is possible where the next conditional is the condition for if the previous conditional is false.
 This can get complicated fast so it's recommended to only use 2-3 conditionals in a nest, else use an if block.
+
+\section{Bitwise Operators}
+Bitwise operators allow us to operate on the individual bits of an object.
+This is helpful for some specific situations and is good practice to be aware of.
+\begin{center}
+	\begin{tabular}{ |c|c|c| }
+		\hline
+		\textbf{Operator} & \textbf{Function} & \textbf{Use} \\
+		\hline
+		\verb|~| & Bitwise NOT & \verb|~expr| \\
+		\hline
+		\verb|<<| & Left shift & \verb|expr1 << expr2| \\
+		\hline
+		\verb|>>| & Right shift & \verb|expr1 >> expr2| \\
+		\hline
+		\verb|&| & Bitwise AND & \verb|expr1 & expr2| \\
+		\hline
+		\verb|^| & Bitwise XOR & \verb|expr1 ^ expr2| \\
+		\hline
+		\verb=|= & Bitwise OR & \verb=expr1 | expr2= \\
+		\hline
+	\end{tabular}
+\end{center}
+Operands are always converted to the larger integral type if possible before bitwise operations take place.
+This includes regular \verb|int| type and character literals.
+The operands can be signed or unsigned. 
+If the operand is signed and negative, the sign bit is handled differently depending on the system.
+It is not recommended to use signed integrals if possible.
+Bitwise operators are left associative.
+
+\subsection{Bitwise Shift Operators}
+Shift will shift the bits of an object by the right-hand operator.
+Left shift might turn a signed \verb|int| into an unsigned one by mistake.
+Conversely, a right shift might turn an unsigned \verb|int| into a signed one.
+The latter has undefined behavior and should be avoided at all costs.
+\subsection{Bitwise NOT}
+Bitwise NOT will invert all bits in a value.
+This means that the promoted values will get inverted as well.
+\subsection{Bitwise AND,OR,XOR}
+Bitwise AND will turn a bit to 1 if and only if both equivalent bits in the operand are 1.
+Bitwise OR will turn a bit to 1 if either or both operand bits are 1.
+Bitwise XOR will turn a bit to one only if either operand bit are 1.
+
+\section{sizeof Operator}
+The \verb|sizeof| operator returns the size of an expression or type name.
+It is a constant expression of type \verb|size_t|.
+
+\begin{center}
+	\verb|sizeof (type)| \\
+	\verb|sizeof expr| \\
+\end{center}
+The value returned for \verb|sizeof expr| is the size of the type returned by the expression.
+The \verb|sizeof| operator does not evaluate the operand, contrary to many functions.
+
+\section{Comma operator}
+This takes two operands and evaluates them from left to right.
+The left hand result is discarded unless it can no longer be evaluated.
+The result is the right hand operand, it returns an lvalue if the result is one.
+This has the lowest precedence of any operation in C++.
+It is most useful in for loops to provide multiple changes after a loop.
+
+\section{Type Conversion}
+Since a variety of types are similar to each other, we can convert said types to a common type.
+Most of the time we can get away with \emph{implicit conversions}, the conversions that are implied by the programmer or compiler.
+Among arithmetic types, they are defined to preserve precision. 
+\verb|int| to \verb|double| wouldn't lose any information, but \verb|double| to \verb|int| would.
+
+\subsection{Arithmetic Conversions}
+Integral types are generally converted up in size/type. 
+The specifics arise when signedness is taken into account.
+This can produce undefined behavior so signed types should not be converted blindly.
+Generally you can convert positive signed values to an unsigned common type.
+
+\subsection{Implicit Conversions}
+\begin{itemize}
+	\item \textbf{Array to pointer} - Arrays are automatically converted to a pointer to the first element in an array.
+		This isn't used when the array is used with \verb|decltype| or as the operand of address-of, \verb|sizeof|, or \verb|typeid| operators. \\
+	\item \textbf{Pointer Conversion} - Constant integral value of 0 and the literal \verb|nullptr| can be converted to any pointer type.
+		Any pointer to a nonconst type can be converted to \verb|void*|.
+		Any pointer can be converted to a \verb|const verb*|. \\
+	\item \textbf{Conversions to bool} - Any pointer or arithmetic value of 0 is converted to false, any other value is true. \\
+	\item \textbf{Conversion to const} - Can convert a pointer to a nonconst to a \verb|const| pointer.
+		The same holds true for a reference.
+	\item \textbf{Conversion Defined by Class Types} - Class types can define their own conversions.
+		This is limited to one conversion at a time however.
+\end{itemize}
+
+\subsection{Explicit Conversions}
+\begin{center}
+	\verb|cast_name<type>(expr)|
+\end{center}
+Sometimes we would like to explicitly convert objects.
+This can be done with \emph{casts}.
+Casts are inherently dangerous and should only be used if absolutely necessary.
+There are a few types of casts: \verb|static_cast|, \verb|const_cast|, and \verb|reinterpret_cast|.
+\subsubsection{static\_cast}
+This cast is used when there is a well defined conversion.
+Its most common in arithmetic conversion. 
+It can be also used to do conversions that aren't typically done, like retrieving a pointer value stored in a \verb|void*| pointer.
+\subsubsection{const\_cast}
+This cast changes a low-level \verb|const| in its operand.
+It essentially removes the \verb|const| type.
+\subsubsection{reinterpret\_cast}
+This cast performs a low-level reinterpretation of the bit pattern of its operands.
+This essentially means that the compiler will treat the expression as if it \emph{had} the type.
+Use of this cast is almost never recommended, it is very dangerous.
+\subsubsection{Old-Style Casts}
+Earlier versions of C++ had casts like \verb|type (expr);| or \verb|(type) expr|.
+These can act like any of the above casts, and must be interpreted explicitly by the programmer for proper use.
+Never use these, just be aware that they can exist in older programs.
+
+In general, casts should not be used.
+\verb|static_cast| is the safer of the options, but should only be used if absolutely required by the program.
+They can lead to a multitude of errors and problems that are hard to diagnose.
+
+\section{Notes}
+\begin{itemize}
+	\item C++ has a variety of expressions that apply to the built-in types. 
+	\item Expressions have precedence and associativity. 
+		Precedence determines how operators are grouped in compound expressions.
+		Associativity determines how operators in the same precedence are grouped.
+	\item Type conversion is usually implied.
+\end{itemize}
 
  \end{document} 
 
