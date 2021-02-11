@@ -981,6 +981,62 @@ They can lead to a multitude of errors and problems that are hard to diagnose.
 		Associativity determines how operators in the same precedence are grouped.
 	\item Type conversion is usually implied.
 \end{itemize}
+\chapter{Statements}
+\section{Simple Statements}
+Most statements in C++ end in a semicolon.
+The \textbf{expression statement} is a simple statement in which an expression is evaluated and its result is discarded.
+This kind of statement is most useful in places such as \verb|cout << var|.
+
+The \textbf{null statement} is simply a line of code with just a semicolon.
+This is used whenever the program doesn't need a statement but the language expects it, such as an empty while loop.
+
+The \textbf{compound statement} or \textbf{block} is a sequence of statements or declarations surrounded by curly braces.
+This is commonly used in loops in which multiple statements are required.
+Names declared within a block are local to the block and any blocks within this block.
+\section{Conditional Statements}
+Conditional statements are statements that can respond to conditions.
+There are two kinds of conditional statements in \verb|C++|, \verb|if| and \verb|switch|.
+\subsection{if Statement}
+An \verb|if| statement conditionally executes another statement depending on the results of the condition.
+Every \verb|if| statement needs a condition and a statement.
+The condition can be any expression or initialized variable declaration that is of a type that can be converted to a \verb|bool|.
+
+As \verb|if| statements can be used in blocks, a problem called "dangling else" can occur where an \verb|else| statement doesn't go to the \verb|if| statement that was intended.
+This can be fixed by using curly braces for every \verb|if| statement and using autoindenting in text editors.
+
+\subsection{switch Statement}
+The \verb|switch| statement allows one to conditionally run something based on the result of an expression.
+It allows us to choose from a variety of cases.
+\begin{lstlisting}[language=C++]
+	switch (expr){
+		case const integral:
+			expr
+		default:
+			expr
+	}
+\end{lstlisting}
+C++ will execute attempt to execute each case without intervention.
+To solve this it is always recommended to \verb|break| at the end of each case label to prevent unwanted action.
+A \verb|switch| statement does not have scope, so any variable declared in one case label will not be seen by another, leading to an illegal action.
+Variables must be declared outside of the \verb|switch| statement.
+The default label will run if no other case label has been executed (assuming proper usage of \verb|break|).
+\section{Iterative Statements}
+Iterative statements, usually called \emph{loops}, provide for repeated execution until a condition is evaluated to be true.
+\subsection{while Statement}
+The \verb|while| statement executes a target statement as long as a condition is true:
+\begin{lstlisting}[language=C++]
+	while (condition)
+		statement
+\end{lstlisting}
+The statement is usually in a block, and is executed as long as the condition evaluates as true.
+As soon as the condition is evaluated as false the statement is not executed.
+It is never executed if the condition is never evaluated as true.
+
+A \verb|while| loop is generally to read data indefinitely like when reading input.
+hkjfhdsjkfh
+hjkfdlshjfd
+
+
 
  \end{document} 
 
