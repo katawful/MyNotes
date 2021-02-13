@@ -14,25 +14,25 @@
 \section{Introduction}
 Every C++ program has one or more functions, with one of these functions being \verb|main()|. A function is defined with four parts
 \begin{center}
-	\begin{tabular}{ |c|c| }
-		\hline
-		R.T. & Return type \\
-		\hline
-		F.N. & Function type \\
-		\hline
-		P.L. & Parameter list, maybe empty \\
-		\hline
-		F.B. & Function body, inside braces \\
-		\hline
-	\end{tabular}
+  \begin{tabular}{ |c|c| }
+    \hline
+    R.T. & Return type \\
+    \hline
+    F.N. & Function type \\
+    \hline
+    P.L. & Parameter list, maybe empty \\
+    \hline
+    F.B. & Function body, inside braces \\
+    \hline
+  \end{tabular}
 \end{center}
 For example, a basic \verb|main()| function would look like this:
 \begin{center}
-\begin{lstlisting}[language=C++]
-	int main() { 
-		return 0;
-	}
-\end{lstlisting}
+  \begin{lstlisting}[language=C++]
+    int main() { 
+        return 0;
+    }
+  \end{lstlisting}
 \end{center}
 \verb|int| is the return type, with the function \verb|main| requiring an \verb|int| R.T. A semicolon (\verb|;|) closes a statement inside a function. For \verb|main()|, the function returns a status indicator. Thus \verb|return| is required, with \verb|0| indicating a success.
 
@@ -47,7 +47,7 @@ Since I am using Linux, the primary C++ compiler of use is GCC. While this has o
 For simple programs, the primary usage is as follows: 
 
 \begin{center}
-	\verb|$ g++ -o output input.cpp|
+  \verb|$ g++ -o output input.cpp|
 \end{center}
 
 \section{Input/Output}
@@ -55,26 +55,26 @@ C++ doesn't natively handle input and output operations but relies on a built in
 In the \verb|iostream| library there are two types of streams: \verb|istream| and \verb|ostream|. There are a handful of IO objects in this library that we can classify:
 
 \begin{center}
-	\begin{tabular}{ |c|c|c| }
-		\hline
-		\textbf{Function} & \textbf{Use} & \textbf{Note} \\
-		\hline
-		\verb|cin| & Standard input & Type \verb|istream| \\
-		\hline
-		\verb|cout| & Standard output & Type \verb|ostream| \\
-		\hline
-		\verb|cerr| & Standard error & For general errors \\
-		\hline
-		\verb|clog| & Standard log & For general info on the program \\
-		\hline
-	\end{tabular}
+  \begin{tabular}{ |c|c|c| }
+    \hline
+    \textbf{Function} & \textbf{Use} & \textbf{Note} \\
+    \hline
+    \verb|cin| & Standard input & Type \verb|istream| \\
+    \hline
+    \verb|cout| & Standard output & Type \verb|ostream| \\
+    \hline
+    \verb|cerr| & Standard error & For general errors \\
+    \hline
+    \verb|clog| & Standard log & For general info on the program \\
+    \hline
+  \end{tabular}
 \end{center}
 
 \section{Namespaces}
 C++ has many functions, and some share names between libraries. The compiler and author have to know what object one is referring to. To do this, we prepend a namespace to the object in question and link them with a scope operator:
 
 \begin{lstlisting}[language=C++]
-	std::cout
+    std::cout
 \end{lstlisting}
 
 \verb|std| is the standard C++ namespace and most objects in the standard libraries use this namespace. \verb|::| is the scope operator and it lets us describe a namespace within a scope.
@@ -83,7 +83,7 @@ C++ has many functions, and some share names between libraries. The compiler and
 A header links to a library and we use them in C++ programs via the \verb|#include| director. This is used outside of the function and tells the compiler to include the library while compiling. It is used like so:
 
 \begin{center}
-	\verb|#include <iostream>|
+  \verb|#include <iostream>|
 \end{center}
 \section{Comments}
 Comments are integral to any programming language. They improve readability and help the author and people reading the code to better understand the code at hand.
@@ -92,11 +92,11 @@ In C++ there are two kinds of comments: single-line and paired.
 Single-line comments are made with two forwardslashes, \verb|//|. Everything past this is not read by the compiler up until a newline is made. For example:
 
 \begin{scriptsize}
-\begin{lstlisting}[language=C++]
+  \begin{lstlisting}[language=C++]
 std::cout;; // this comment keeps the code in view of the compiler
 // std::cout;
 // in the line above, the code is commented out
-\end{lstlisting}
+  \end{lstlisting}
 \end{scriptsize}
 
 \subsection{Paired Comments}
@@ -105,9 +105,9 @@ A paired comment is started with \verb|/*| and ends on the \emph{first} instance
 If we wanted to comment out a section of code that contains a set of paired comments, we would be unable to. For instance:
 
 \begin{flushleft}
-\noindent \verb|/* we start our comment here| \\
-\verb|stuff /* paired */| \\
-\verb|we end our paired here */| \\
+  \noindent \verb|/* we start our comment here| \\
+  \verb|stuff /* paired */| \\
+  \verb|we end our paired here */| \\
 \end{flushleft}
 
 \noindent In this example the paired comment ends in the second line at the first \verb|*/|. This leaves the second \verb|*/| without an initial \verb|/*|.
@@ -117,8 +117,8 @@ In C++, \verb|while| loops are very common. The most common of these are \verb|w
 
 \begin{lstlisting}[language=C++]
 while ( i < 10 ) {
-	do stuff;
-	++i
+    do stuff;
+    ++i
 }
 \end{lstlisting}
 
@@ -126,23 +126,23 @@ while ( i < 10 ) {
 A \verb|for| loop contains three parts in its header: a init statement, a condition, and an expression.
 
 \begin{center}
-	\begin{tabular}{ |c|c|c| }
-		\hline
-		\textbf{Part} & \textbf{Example} & \textbf{Description} \\
-		\hline
-		Init statement & \verb|int val = 1;| & Defines a variable for the loop \\
-		\hline
-		Condition & \verb|val <= 10;| & Describes when to end the loop \\
-		\hline
-		Expression & \verb|++val| & What to do after each loop \\
-		\hline
-	\end{tabular}
+  \begin{tabular}{ |c|c|c| }
+    \hline
+    \textbf{Part} & \textbf{Example} & \textbf{Description} \\
+    \hline
+    Init statement & \verb|int val = 1;| & Defines a variable for the loop \\
+    \hline
+    Condition & \verb|val <= 10;| & Describes when to end the loop \\
+    \hline
+    Expression & \verb|++val| & What to do after each loop \\
+    \hline
+  \end{tabular}
 \end{center}
 And all together this would become:
 \begin{lstlisting}[language=C++]
 for ( int val = 1; val <= 10; ++val) {
-	stuff;
-	maybe more stuff;
+    stuff;
+    maybe more stuff;
 }
 \end{lstlisting}
 It is important to note that only the first two parts are ended by a semicolon, the expression is not ended by a semicolon. 
@@ -153,10 +153,10 @@ These are sometimes called methods. We use these on objects of the class type an
 \section{Notes}
 
 \begin{itemize}
-	\item A semicolon ends a statement.
-	\item The scope operator (\verb|::|) is used to define the name of an object.
-	\item We can read from an input stream by using \verb|while ( cin << input )|
-	\item We can read from a file and output to a file: \\ \verb|program <infile >outfile|
+  \item A semicolon ends a statement.
+  \item The scope operator (\verb|::|) is used to define the name of an object.
+  \item We can read from an input stream by using \verb|while ( cin << input )|
+  \item We can read from a file and output to a file: \\ \verb|program <infile >outfile|
 \end{itemize}
 
 \chapter{Variables and Basic Types}
@@ -168,74 +168,74 @@ Types like char and boolean should never be used for arithmetic.
 
 \noindent We can convert one type to another on the fly depending on some conditions. This lets us treat some variables differently when we want to. There are some limitations and conditions we should be aware of:
 \begin{center}
-	\begin{tabular}{ |c|c| }
-		\hline
-		\textbf{Conversion} & \textbf{Conditions} \\
-		\hline
-		Non-bool $\rightarrow$ bool & 0 is false, otherwise true \\
-		\hline
-		Bool $\rightarrow$ non-bool & True is 1, false is 0 \\
-		\hline
-		Float $\rightarrow$ integral & Truncated, integer component is kept \\
-		\hline
-		Integral $\rightarrow$ float & Fractional part is 0, can lose precision \\
-		\hline
-		Out-of-range $\rightarrow$ unsigned & Remainder of the value modulo \\
-		\hline
-		Out-of-range $\rightarrow$ signed & Undefined, produces unexpected results \\
-		\hline
-	\end{tabular}
+  \begin{tabular}{ |c|c| }
+    \hline
+    \textbf{Conversion} & \textbf{Conditions} \\
+    \hline
+    Non-bool $\rightarrow$ bool & 0 is false, otherwise true \\
+    \hline
+    Bool $\rightarrow$ non-bool & True is 1, false is 0 \\
+    \hline
+    Float $\rightarrow$ integral & Truncated, integer component is kept \\
+    \hline
+    Integral $\rightarrow$ float & Fractional part is 0, can lose precision \\
+    \hline
+    Out-of-range $\rightarrow$ unsigned & Remainder of the value modulo \\
+    \hline
+    Out-of-range $\rightarrow$ signed & Undefined, produces unexpected results \\
+    \hline
+  \end{tabular}
 \end{center}
 \section{Literals}
 Literals are self-evident value. For instance ``3'' is a literal. We know what it means just looking at it. There are many types of literals:
 \begin{center}
-	\begin{tabular}{ |c|c| }
-		\hline
-		\textbf{Type} & \textbf{Example} \\
-		\hline
-		Decimal & 3 \\
-		\hline
-		Octal & 0\# \\
-		\hline
-		Hexidecimal & 0x\# \\
-		\hline
-		Character & `c' \\
-		\hline
-		String & ``word'' \\
-		\hline
-	\end{tabular}
+  \begin{tabular}{ |c|c| }
+    \hline
+    \textbf{Type} & \textbf{Example} \\
+    \hline
+    Decimal & 3 \\
+    \hline
+    Octal & 0\# \\
+    \hline
+    Hexidecimal & 0x\# \\
+    \hline
+    Character & `c' \\
+    \hline
+    String & ``word'' \\
+    \hline
+  \end{tabular}
 \end{center}
 
 \section{Escape Sequences}
 Sometimes we want to enter a specific kind of input, but due to the way C++ we catn't input them as we would want to. We use a backslash $\backslash$ folowed by a neccessary character. There are many escape sequences and they can be used in many places:
 \begin{center}
-	\begin{tabular}{ |c|c| }
-		\hline
-		\textbf{Escape Sequence} & \textbf{Function} \\
-		\hline
-		$\backslash$n & Newline \\
-		\hline
-		$\backslash$t & Horizontal tab \\
-		\hline
-		$\backslash$a & Terminal alert/bell \\
-		\hline
-		$\backslash$v & Vertical tab \\
-		\hline
-		$\backslash$b & Backspace \\
-		\hline
-		$\backslash$`` & Double quote \\
-		\hline
-		$\backslash$$\backslash$ & Backslash \\
-		\hline
-		$\backslash$? & Question mark \\
-		\hline
-		$\backslash$` & Single quote \\
-		\hline
-		$\backslash$r & Carriage return \\
-		\hline
-		$\backslash$f & Form feed \\
-		\hline
-	\end{tabular}
+  \begin{tabular}{ |c|c| }
+    \hline
+    \textbf{Escape Sequence} & \textbf{Function} \\
+    \hline
+    $\backslash$n & Newline \\
+    \hline
+    $\backslash$t & Horizontal tab \\
+    \hline
+    $\backslash$a & Terminal alert/bell \\
+    \hline
+    $\backslash$v & Vertical tab \\
+    \hline
+    $\backslash$b & Backspace \\
+    \hline
+    $\backslash$`` & Double quote \\
+    \hline
+    $\backslash$$\backslash$ & Backslash \\
+    \hline
+    $\backslash$? & Question mark \\
+    \hline
+    $\backslash$` & Single quote \\
+    \hline
+    $\backslash$r & Carriage return \\
+    \hline
+    $\backslash$f & Form feed \\
+    \hline
+  \end{tabular}
 \end{center}
 One can also use octal/hex values with escape sequences to insert a specific character (such as a non-English character, symbol, ect...)
 \section{Variables}
@@ -247,7 +247,7 @@ A declaration makes a name known to the program along with its associated type. 
 \begin{lstlisting}[language=C++]
 int i;	// value is 0
 int main() {
-	int i;	// value is undefined
+    int i;	// value is undefined
 }
 \end{lstlisting}
 \noindent Classes can be supplied with their own default values.
@@ -267,11 +267,11 @@ This is important if we want to carry one variable from one file to another. To 
 \section{Identifiers}
 We can name objects in many different ways, but there are some rules. Names used by standard libraries are unavailable (e.g. \verb|cin|) for use. Underscores can't be used more than once in a row, can't begin with an underscore followed by an uppercase letter, and identifiers defined outside of a function can't begin with an underscore. Aside from those exceptions, the rules are fairly lax. Any combination of numbers and letters can be used. Some common ways to create an identifier can be:
 \begin{center}
-	\begin{itemize}
-		\item \verb|wordName|
-		\item \verb|word_Name|
-		\item \verb|Word_name|
-	\end{itemize}
+  \begin{itemize}
+    \item \verb|wordName|
+    \item \verb|word_Name|
+    \item \verb|Word_name|
+  \end{itemize}
 \end{center}
 \section{Scope}
 A scope is a part of a progam where a name has a certain meaning. Usually these are things enclosed in curly braces. A scope can be nested. A \verb|for| inside a \verb|main()| function is nested. Variables defined in the \verb|main()| function are seen by any nested scopes, but a variable defined in a scope is only seen by further nested scopes. This is overridden by the scope operator (\verb|::|).
@@ -284,12 +284,12 @@ A pointer points to another type. It allows indirect access to the object that i
 It doesn't need to be initialized. We define a pointer using \verb|*d| with d being the pointer name. 
 Pointers hold the address of the object it points to. We can get the address using the address-of operator (\verb|&|). The value stored in the pointer can be one of 4 states:
 \begin{center}
-	\begin{enumerate}
-		\item Point to an object
-		\item Point to the location just past the end of the object
-		\item Null, the pointer points to nothing
-		\item Invalid, any value not the ones above
-	\end{enumerate}
+  \begin{enumerate}
+    \item Point to an object
+    \item Point to the location just past the end of the object
+    \item Null, the pointer points to nothing
+    \item Invalid, any value not the ones above
+  \end{enumerate}
 \end{center}
 In order to access the object in which the pointer points to we use dereference the pointer using the dereference operator (\verb|*|). This allows us to perform most operations on the object without modifying the pointer itself.
 
@@ -328,34 +328,34 @@ When we want to be more specific and get the deduced type of the item in questio
 Creating our own data structures is incredibly useful and is relatively simple:
 \begin{lstlisting}[language=C++]
 struct name {
-	x
+    x
 };
 \end{lstlisting}
 With x being our data elements. We prepend this to our program and the program pretends that the data was defined in our program. The names in the class must be unique to the class, and we are able to initialize any objects to give them a default initialization value. We can also make it a separate file and include it in our program. The preprocessor does the same prepending as we did. To do that we use: \verb|#include "Data_structure.h"| with ``Data\_structure'' being our data file and in the same location as the source code is compiled in.
 \subsection{Header Guards}
 Obviously we want to include this file in every part of the program that needs it. However, we don't want to risk including it more than one time. Doing so will cause issues. To do that we use preprocessor variables to describe the condition of header file. These are: 
 \begin{center}
-	\begin{tabular}{ |c|c| }
-		\hline
-		\textbf{Variable Type} & \textbf{Variable} \\
-		\hline
-		Defined & \verb|#DEFINE| \\
-		\hline
-		Not defined & No variable \\
-		\hline
-		If defined & \verb|#IFDEF| + \verb|#ENDIF| \\
-		\hline
-		If not defined & \verb|#IFNDEF| + \verb|#ENDIF| \\
-		\hline
-	\end{tabular}
+  \begin{tabular}{ |c|c| }
+    \hline
+    \textbf{Variable Type} & \textbf{Variable} \\
+    \hline
+    Defined & \verb|#DEFINE| \\
+    \hline
+    Not defined & No variable \\
+    \hline
+    If defined & \verb|#IFDEF| + \verb|#ENDIF| \\
+    \hline
+    If not defined & \verb|#IFNDEF| + \verb|#ENDIF| \\
+    \hline
+  \end{tabular}
 \end{center}
 These should always be written in a way that the header file is included only once if we want it. The preprocessor variables should also be written in caps to avoid any confusion.
 \section{My Notes}
 \begin{itemize}
-	\item Types are integral to C++
-	\item Types define operations on objects
-	\item Can use header files to define our own types
-	\item Always include header files once using preprocessor variables
+  \item Types are integral to C++
+  \item Types define operations on objects
+  \item Can use header files to define our own types
+  \item Always include header files once using preprocessor variables
 \end{itemize}
 
 \chapter{Strings, Vectors, and Arrays}
@@ -366,23 +366,23 @@ e.g. \verb|using std::cout;|. We don't want to use this inside header files howe
 \section{Library string Type}
 Using the \verb|std| namespace, the \verb|string| library lets us create and modify strings. We must, of course, initialize the string and there are many ways to do so:
 \begin{center}
-	\begin{tabular}{ |c|c| }
-		\hline
-		\textbf{Initialization} & \textbf{Result} \\
-		\hline
-		\verb|string s1;| & Default initialization, empty string \\
-		\hline
-		\verb|string s2(s1);| & s2 is a copy of s1 \\
-		\hline
-		\verb|string s2 = s1;| & Same as above \\
-		\hline
-		\verb|string s3("value");| & s3 is a copy of string literal, not including the null \\
-		\hline
-		\verb|string s3 = "value";| & Same as above \\
-		\hline
-		\verb|string s4(n, 'c');| & Initialize s4 with \verb|n| copies of character `\verb|c|' \\
-		\hline
-	\end{tabular}
+  \begin{tabular}{ |c|c| }
+    \hline
+    \textbf{Initialization} & \textbf{Result} \\
+    \hline
+    \verb|string s1;| & Default initialization, empty string \\
+    \hline
+    \verb|string s2(s1);| & s2 is a copy of s1 \\
+    \hline
+    \verb|string s2 = s1;| & Same as above \\
+    \hline
+    \verb|string s3("value");| & s3 is a copy of string literal, not including the null \\
+    \hline
+    \verb|string s3 = "value";| & Same as above \\
+    \hline
+    \verb|string s4(n, 'c');| & Initialize s4 with \verb|n| copies of character `\verb|c|' \\
+    \hline
+  \end{tabular}
 \end{center}
 \subsection{Direct vs Copy Initialization}
 A copy initialization uses \verb|=| to copy the right object to the left object during creation. A direct initialization doesn't have this.
@@ -391,29 +391,29 @@ We use copy initialization for single initialization, but if we want to initiali
 \section{string Operators}
 There are many operators for the \verb|string| type. Here are some examples:
 \begin{center}
-	\begin{tabular}{ |c|c| }
-		\hline
-		\textbf{Operator} & \textbf{Function} \\
-		\hline
-		\verb|os << s| & Writes s onto output stream os, returns os \\
-		\hline
-		\verb|is >> s| & Read whitespace separated string from is into s, returns is \\
-		\hline
-		\verb|getline(is, s)| & Read line input from is to s, returns is using newline \\
-		\hline
-		\verb|s.empty()| & Returns true if s is empty, else false \\
-		\hline
-		\verb|s.size()| & Returns the number of characters in s \\
-		\hline
-		\verb|s[n]| & Returns reference to character at position \verb|n| in s, starts from 0 \\
-		\hline
-		\verb|s1 + s2| & Returns string cocantenation of s1 and s2 \\
-		\hline
-		\verb|s1 = s2| & Replaces s1 with a copy of s2 \\
-		\hline
-		\verb|==, !=, <, <=, >, >=| & Equalities are case sensitive and use dictionary sorting. \\
-		\hline
-	\end{tabular}
+  \begin{tabular}{ |c|c| }
+    \hline
+    \textbf{Operator} & \textbf{Function} \\
+    \hline
+    \verb|os << s| & Writes s onto output stream os, returns os \\
+    \hline
+    \verb|is >> s| & Read whitespace separated string from is into s, returns is \\
+    \hline
+    \verb|getline(is, s)| & Read line input from is to s, returns is using newline \\
+    \hline
+    \verb|s.empty()| & Returns true if s is empty, else false \\
+    \hline
+    \verb|s.size()| & Returns the number of characters in s \\
+    \hline
+    \verb|s[n]| & Returns reference to character at position \verb|n| in s, starts from 0 \\
+    \hline
+    \verb|s1 + s2| & Returns string cocantenation of s1 and s2 \\
+    \hline
+    \verb|s1 = s2| & Replaces s1 with a copy of s2 \\
+    \hline
+    \verb|==, !=, <, <=, >, >=| & Equalities are case sensitive and use dictionary sorting. \\
+    \hline
+  \end{tabular}
 \end{center}
 We can read a string from an input buffer in the same manner as we can an integer. The \verb|size()| operator returns the type \verb|string::size_type|.
 The auto/decltype type specifier should be used when using this operator for convenience. It is unsigned.
@@ -426,7 +426,7 @@ Modifying the reference then switching to the next character reference is the be
 A ranged for is set up as so:
 \begin{lstlisting}[language=C++]
 for ( &c : s)
-	do stuff
+    do stuff
 \end{lstlisting}
 \subsection{The Subscript Operator}
 If we want to access a single character in a string, we use the subscript operator (\verb|[]|). Starting at 0, the subscript operator uses the
@@ -435,25 +435,25 @@ If we want to access a single character in a string, we use the subscript operat
 A \verb|vector| in C++ is a collection of objects of the same type, also called a container. Vectors are contained in the \verb|vector| header in the standard namespace, \verb|std|. This lets us create \emph{class templates}. A class template is a way for the compiler to generate classes and functions. For vectors, 
 we need to specify that we want to create a vector of a certain type: \verb|vector<type> name|. This creates the vector type from a template, creating a new type called \verb|vector<type>|. While vectors of references are not possible, there are many ways to create vectors:
 \begin{center}
-	\begin{tabular}{ |c|c| }
-		\hline
-		\textbf{Initializer} & \textbf{Result} \\
-		\hline
-		\verb|vector<T> v1| & Vector v1 holds object of type T, default initialization \\
-		\hline
-		\verb|vector<T> v2(v1)| & v2 has copy of each element in v1 \\
-		\hline
-		\verb|vector<T> v2 = v1| & Same as above \\
-		\hline
-		\verb|vector<T> v3(n, val)| & v3 has \verb|n| elements, each with value val \\
-		\hline
-		\verb|vector<T> v4(n)| & v4 has \verb|n| elements of default-initialization \\
-		\hline
-		\verb|vector<T> v5{a,b,c...}| & v5 has number of elements as initializors \\
-		\hline
-		\verb|vector<T> v5 = {a,b,c...}| & Same as above \\
-		\hline
-	\end{tabular}
+  \begin{tabular}{ |c|c| }
+    \hline
+    \textbf{Initializer} & \textbf{Result} \\
+    \hline
+    \verb|vector<T> v1| & Vector v1 holds object of type T, default initialization \\
+    \hline
+    \verb|vector<T> v2(v1)| & v2 has copy of each element in v1 \\
+    \hline
+    \verb|vector<T> v2 = v1| & Same as above \\
+    \hline
+    \verb|vector<T> v3(n, val)| & v3 has \verb|n| elements, each with value val \\
+    \hline
+    \verb|vector<T> v4(n)| & v4 has \verb|n| elements of default-initialization \\
+    \hline
+    \verb|vector<T> v5{a,b,c...}| & v5 has number of elements as initializors \\
+    \hline
+    \verb|vector<T> v5 = {a,b,c...}| & Same as above \\
+    \hline
+  \end{tabular}
 \end{center}
 There's an important distinction that vectors have. Parentheses \verb|()| are for constructing objects while braces \verb|{}| are for list initialization.
 List initialization adds the value to the vector, but object construction creates objects based on specific parameters. 
@@ -462,27 +462,27 @@ The vector \verb|vector<int> v2(10)| creates a vector with \emph{10} objects of 
 \section{vector Operations}
 There are many vector operations and some are shared between similar library types:
 \begin{center}
-	\begin{tabular}{ |c|c| }
-		\hline
-		\textbf{Operation} & \textbf{Function} \\
-		\hline
-		\verb|v.empty()| & Returns true if v is empty, otherwise false \\
-		\hline
-		\verb|v.size()| & Returns size of vector, the number of elements \\
-		\hline
-		\verb|v.push_back(t)| & Adds element of value t to the end of v \\
-		\hline
-		\verb|v[n]| & Returns reference to element at position \verb|n| \\
-		\hline
-		\verb|v1 = v2| & Replace the elements of v1 with the copy of elements in v2 \\
-		\hline
-		\verb|v1 = {a,b,c...}| & Replace elements in v1 with copy elements in the list \\
-		\hline
-		\verb|==, !=, <, <=, >, >=| & Vectors are equal if they have the same amount \\
-		 & of elements and each element corresponds to the \\
-		 & elements in the other vector, dictionary sorting \\
-		\hline
-	\end{tabular}
+  \begin{tabular}{ |c|c| }
+    \hline
+    \textbf{Operation} & \textbf{Function} \\
+    \hline
+    \verb|v.empty()| & Returns true if v is empty, otherwise false \\
+    \hline
+    \verb|v.size()| & Returns size of vector, the number of elements \\
+    \hline
+    \verb|v.push_back(t)| & Adds element of value t to the end of v \\
+    \hline
+    \verb|v[n]| & Returns reference to element at position \verb|n| \\
+    \hline
+    \verb|v1 = v2| & Replace the elements of v1 with the copy of elements in v2 \\
+    \hline
+    \verb|v1 = {a,b,c...}| & Replace elements in v1 with copy elements in the list \\
+    \hline
+    \verb|==, !=, <, <=, >, >=| & Vectors are equal if they have the same amount \\
+                                & of elements and each element corresponds to the \\
+                                & elements in the other vector, dictionary sorting \\
+                                \hline
+  \end{tabular}
 \end{center}
 We can't use a ranged for loop if the body of the loop adds elements to the vector. We can however, access elements in a vector in the same manner as a string.
 The size operation returns a \verb|size_type| type. Use of auto/decltype is encouraged.
@@ -494,23 +494,23 @@ These operators don't care about type, and are mostly used to determine if we ha
 \subsection{Iterator Operations}
 There are a good number of iterator operations:
 \begin{center}
-	\begin{tabular}{ |c|c| }
-		\hline
-		\textbf{Operation} & \textbf{Function} \\
-		\hline
-		\verb|*iter| & Returns reference to element denoted by the iterator iter \\
-		\hline
-		\verb|iter -> mem| & Dereference iter and fetch member mem from underlying element, \\
-				   & replaces \verb|(*iter).mem| \\
-		\hline
-		\verb|++iter| & Increment iterator \\
-		\hline
-		\verb|--iter| & Decrement iterator \\
-		\hline
-		\verb|==, !=| & Only equalities, same if denote same element or off the\\
-			      & end iterators for the same container \\
-		\hline
-	\end{tabular}
+  \begin{tabular}{ |c|c| }
+    \hline
+    \textbf{Operation} & \textbf{Function} \\
+    \hline
+    \verb|*iter| & Returns reference to element denoted by the iterator iter \\
+    \hline
+    \verb|iter -> mem| & Dereference iter and fetch member mem from underlying element, \\
+                       & replaces \verb|(*iter).mem| \\
+                       \hline
+    \verb|++iter| & Increment iterator \\
+    \hline
+    \verb|--iter| & Decrement iterator \\
+    \hline
+    \verb|==, !=| & Only equalities, same if denote same element or off the\\
+                  & end iterators for the same container \\
+                  \hline
+  \end{tabular}
 \end{center}
 \subsection{Iterators and Types}
 Library types with iterators define the types \verb|iterator| and \verb|const_iterator|. It is best to use the \verb|const| type when we only need to read from a container.
@@ -522,34 +522,34 @@ Arithmetic on iterators themselves is very powerful, and some library types supp
 It is important to remember that not all iterators support arithmetic so the following are for \verb|vector| and \verb|string| more generally:
 \newline
 \begin{center}
-	\begin{tabular}{ |c|c| }
-		\hline
-		Operation & Function \\
-		\hline
-		\verb|iter + n, iter - n| & Add/subtract integral value to/from an iterator \\
-					  & yields iterator n places from iterator \\
-		\hline
-		\verb|iter += n, iter -= n| & Compound assignment of value \verb|n| \\
-		\hline
-		\verb|iter1 - iter2| & Finds the difference in iterator values, produces \\
-				     & \verb|difference_type| which is signed \\
-		\hline
-		\verb|>, >=, <, <=| & Relational operators, compares value of iterator \\
-		\hline
-	\end{tabular}
+  \begin{tabular}{ |c|c| }
+    \hline
+    Operation & Function \\
+    \hline
+    \verb|iter + n, iter - n| & Add/subtract integral value to/from an iterator \\
+                              & yields iterator n places from iterator \\
+                              \hline
+    \verb|iter += n, iter -= n| & Compound assignment of value \verb|n| \\
+    \hline
+    \verb|iter1 - iter2| & Finds the difference in iterator values, produces \\
+                         & \verb|difference_type| which is signed \\
+                         \hline
+    \verb|>, >=, <, <=| & Relational operators, compares value of iterator \\
+    \hline
+  \end{tabular}
 \end{center}
 \subsubsection{Binary Search}
 A common use of iterator arithmetic is for a \verb|binary search|, used to find a particular value in a container.
 The set up of a search is as follows:
 \begin{center}
-	\begin{enumerate}
-		\item Look at item closest to middle 
-		\item If is desired value, end search
-		\item If value is smaller than the middle value, search first half
-		\item Else search second half
-		\item Obtain new midpoint
-		\item Repeat until search is complete
-	\end{enumerate}
+  \begin{enumerate}
+    \item Look at item closest to middle 
+    \item If is desired value, end search
+    \item If value is smaller than the middle value, search first half
+    \item Else search second half
+    \item Obtain new midpoint
+    \item Repeat until search is complete
+  \end{enumerate}
 \end{center}
 \section{Arrays}
 An array is a data structure much like a vector, but it is of fixed size and cannot add data element once created.
@@ -565,19 +565,19 @@ We cannot initialize an array with a copy of another array nor can we assign one
 \subsection{Pointers and References}
 Understanding arrays with respect to pointers and references can get complicated:
 \begin{center}
-	\begin{tabular}{ |c|c| }
-		\hline
-		Array Definition & Type \\
-		\hline
-		\verb|int *ptrs[10];| & ptrs is an array of 10 pointers to int \\
-		\hline
-		\verb|int &refs[10];| & ERROR: cannot create an array of references \\
-		\hline
-		\verb|int (*Parr)[10] = &arr;| & Parr points to an array of 10 ints \\
-		\hline
-		\verb|int (&arrRef)[10] = arr;| & arrRef refers to an array of 10 ints \\
-		\hline
-	\end{tabular}
+  \begin{tabular}{ |c|c| }
+    \hline
+    Array Definition & Type \\
+    \hline
+    \verb|int *ptrs[10];| & ptrs is an array of 10 pointers to int \\
+    \hline
+    \verb|int &refs[10];| & ERROR: cannot create an array of references \\
+    \hline
+    \verb|int (*Parr)[10] = &arr;| & Parr points to an array of 10 ints \\
+    \hline
+    \verb|int (&arrRef)[10] = arr;| & arrRef refers to an array of 10 ints \\
+    \hline
+  \end{tabular}
 \end{center}
 Defining arrays can get a touch confusing, so its best to work outwards from the array name instead.
 The first array is a pointer going left, an array of size 10, and those data elements are of type int going left again.
@@ -607,8 +607,8 @@ Like the iterator counterparts, these return the first and one-past-the-last ele
 Unlike them, the array versions are not member functions and thus requirement an argument, one array in this case:
 
 \begin{lstlisting}[language=C++]
-	int *beg = begin(arr);
-	int *last = end(arr);
+    int *beg = begin(arr);
+    int *last = end(arr);
 \end{lstlisting}
 
 These functions are defined in the \verb|iterator| header.
@@ -634,20 +634,20 @@ If we have a pointer to a C-style string the pointer must point to a null termin
 C-style character strings are initialized like so: \verb|char ca[] = "example";|,
 giving us a character string "example" which has 8 characters in total.
 \begin{center}
-	\begin{tabular}{ |c|c| }
-		\hline
-		\textbf{Operation} & \textbf{Function} \\
-		\hline
-		\verb|strlen(p)| & Returns length of p not including the null character \\
-		\hline
-		\verb|strcmp(p1,p2)| & Compares p1 and p2 for equality; returns 0 if \\
-				     & p1 == p2, 0 \verb|>| if p1 \verb|>| p2, \& 0 \verb|<| if p1 \verb|<| p2 \\
-		\hline
-		\verb|strcat(p1,p2)| & Appends p2 to p1, returns p1 \\
-		\hline
-		\verb|strcpy(p1,p2)| & Copies p2 into p1, returns p1 \\
-		\hline
-	\end{tabular}
+  \begin{tabular}{ |c|c| }
+    \hline
+    \textbf{Operation} & \textbf{Function} \\
+    \hline
+    \verb|strlen(p)| & Returns length of p not including the null character \\
+    \hline
+    \verb|strcmp(p1,p2)| & Compares p1 and p2 for equality; returns 0 if \\
+                         & p1 == p2, 0 \verb|>| if p1 \verb|>| p2, \& 0 \verb|<| if p1 \verb|<| p2 \\
+                         \hline
+    \verb|strcat(p1,p2)| & Appends p2 to p1, returns p1 \\
+    \hline
+    \verb|strcpy(p1,p2)| & Copies p2 into p1, returns p1 \\
+    \hline
+  \end{tabular}
 \end{center}
 We cannot compare C-style strings since that would be an operation on pointers, we must use \verb|strcmp|.
 We also cannot directly cocantenate and copy C-style strings into one another, \verb|strcat| and \verb|strcpy| must be used respectively.
@@ -658,20 +658,20 @@ This is a huge source of errors, bugs, and security problems.
 We can't initialize an array with a vector nor can we initialize an array with an array.
 We can, however, initialize a vector with an array:
 \begin{lstlisting}[language=C++]
-	int arr[] = {0,1,2,3,4,5,6,7,8};
-	vector<int> ivec(begin(arr), end(arr));
+    int arr[] = {0,1,2,3,4,5,6,7,8};
+    vector<int> ivec(begin(arr), end(arr));
 \end{lstlisting}
 In effect we are giving the vector the range of some values in an array.
 It doesn't have to be the first and one past the last value of the array.
 We can use any value of the array subscripted:
 \begin{lstlisting}[language=C++]
-	vector<int> subVec (arr + 1, arr + 4);
+    vector<int> subVec (arr + 1, arr + 4);
 \end{lstlisting}
 which gives us a vector filled with values from the array starting at arr[1] and going to arr[3].
 The array values used aren't iterative, so we start from arr[0] then add 1, start from arr[0] then add 4 giving use arr[1], arr[3].
 \section{My Notes}
 \begin{itemize}
-	\item Don't use arrays and pointers unless really needed, this includes C-style character strings
+  \item Don't use arrays and pointers unless really needed, this includes C-style character strings
 \end{itemize}
 
 \chapter{Expressions}
@@ -680,8 +680,8 @@ The most simple expression is a literal.
 When evaluated they are the value of the literal.
 There are two major type of operators: \textbf{unary} and \textbf{binary}.
 \begin{itemize}
-	\item Unary operators act on one operand, such as the address-of (\verb|&|) and the dereference (\verb|*|) operator
-	\item Binary operators act on two operators, such as the equality (\verb|==|) operator and the multiplication (\verb|*|) operator
+  \item Unary operators act on one operand, such as the address-of (\verb|&|) and the dereference (\verb|*|) operator
+  \item Binary operators act on two operators, such as the equality (\verb|==|) operator and the multiplication (\verb|*|) operator
 \end{itemize}
 There are more operator types but aren't very common.
 
@@ -706,10 +706,10 @@ Because of this we can use an \verb|lvalue| when an \verb|rvalue| is needed but 
 
 Many expressions are \verb|lvalues|:
 \begin{itemize}
-	\item Assignment: uses a non-\verb|const| \verb|lvalue| as left-hand operand and yields it left-hand operand as an \verb|lvalue|.
-	\item Address-of: \verb|lvalue| operand, returns a pointer to a operand as an \verb|rvalue|.
-	\item Built-in, \verb|string|, and \verb|vector| dereference and subscript operators all yield \verb|lvalues|.
-	\item Built-in iterator increment/decrement use \verb|lvalue| operands, the prefix versions yield \verb|lvalues| as well.
+  \item Assignment: uses a non-\verb|const| \verb|lvalue| as left-hand operand and yields it left-hand operand as an \verb|lvalue|.
+  \item Address-of: \verb|lvalue| operand, returns a pointer to a operand as an \verb|rvalue|.
+  \item Built-in, \verb|string|, and \verb|vector| dereference and subscript operators all yield \verb|lvalues|.
+  \item Built-in iterator increment/decrement use \verb|lvalue| operands, the prefix versions yield \verb|lvalues| as well.
 \end{itemize}
 
 \section{Order of Evaluation}
@@ -719,35 +719,35 @@ This causes a ton of issues in programs, as the compiler may not detect or do wh
 As a result, unless order of evaluation is specified, it is best practice to never refer to and change an object in an expression if there is no orderc
 There are four expressions in which order of evaluation is clearly defined:
 \begin{itemize}
-	\item \verb|AND (&&)|
-	\item \verb=OR (||)=
-	\item \verb|Conditional (? :)|
-	\item \verb|Comma (,)| 
+  \item \verb|AND (&&)|
+  \item \verb=OR (||)=
+  \item \verb|Conditional (? :)|
+  \item \verb|Comma (,)| 
 \end{itemize}
 \section{Arithmetic Operators}
 Arithmetic operators can be applied to any arithmetic type.
 \begin{center}
-	\begin{tabular}{ |c|c|c| }
-		\hline
-		\textbf{Operator} & \textbf{Function} & \textbf{Use} \\
-		\hline
-		\verb|+| & Unary plus & \verb|+expr| \\
-		\hline
-		\verb|-| & Unary minus & \verb|-expr| \\
-		\hline
-		\hline
-		\verb|*| & Multiplication & \verb|expr * expr| \\
-		\hline
-		\verb|/| & Division & \verb|expr / expr| \\
-		\hline
-		\verb|%| & Modulo/Remainder & \verb|expr % expr| \\
-		\hline
-		\hline
-		\verb|+| & Addition & \verb|expr + expr| \\
-		\hline
-		\verb|-| & Subtraction & \verb|expr - expr| \\
-		\hline
-	\end{tabular}
+  \begin{tabular}{ |c|c|c| }
+    \hline
+    \textbf{Operator} & \textbf{Function} & \textbf{Use} \\
+    \hline
+    \verb|+| & Unary plus & \verb|+expr| \\
+    \hline
+    \verb|-| & Unary minus & \verb|-expr| \\
+    \hline
+    \hline
+    \verb|*| & Multiplication & \verb|expr * expr| \\
+    \hline
+    \verb|/| & Division & \verb|expr / expr| \\
+    \hline
+    \verb|%| & Modulo/Remainder & \verb|expr % expr| \\
+    \hline
+    \hline
+    \verb|+| & Addition & \verb|expr + expr| \\
+    \hline
+    \verb|-| & Subtraction & \verb|expr - expr| \\
+    \hline
+  \end{tabular}
 \end{center}
 Unary plus returns a copy of the value of the operand.
 Unary minus returns the result of negating the operand.
@@ -759,33 +759,33 @@ A logical operator takes any type that can be converted to \verb|bool|.
 In both cases the results are returned as \verb|bool|.
 Operands are also \verb|rvalues| and result in an \verb|rvalue|.
 \begin{center}
-	\begin{tabular}{ |c|c|c|c| }
-		\hline
-		\textbf{Associativity} & \textbf{Operator} & \textbf{Function} & \textbf{Use} \\
-		\hline
-		Right & \verb|!| & Logical NOT & \verb|!expr| \\
-		\hline
-		\hline
-		Left & \verb|<| & Less than & \verb|expr < expr| \\
-		\hline
-		Left & \verb|<=| & Less than or equal to & \verb|expr <= expr| \\	
-		\hline
-		Left & \verb|>| & Greater than & \verb|expr > expr| \\
-		\hline
-		Left & \verb|=>| & Greater than or equal to  & \verb|expr >= expr| \\
-		\hline
-		\hline
-		Left & \verb|==| & Equality & \verb|expr == expr| \\
-		\hline
-		Left & \verb|!=| & Inequality & \verb|expr != expr| \\
-		\hline
-		\hline
-		Left & \verb|&&| & Logical AND & \verb|expr && expr| \\
-		\hline
-		\hline
-		Left & \verb=||= & Logical OR & \verb=expr || expr= \\
-		\hline
-	\end{tabular}
+  \begin{tabular}{ |c|c|c|c| }
+    \hline
+    \textbf{Associativity} & \textbf{Operator} & \textbf{Function} & \textbf{Use} \\
+    \hline
+    Right & \verb|!| & Logical NOT & \verb|!expr| \\
+    \hline
+    \hline
+    Left & \verb|<| & Less than & \verb|expr < expr| \\
+    \hline
+    Left & \verb|<=| & Less than or equal to & \verb|expr <= expr| \\	
+    \hline
+    Left & \verb|>| & Greater than & \verb|expr > expr| \\
+    \hline
+    Left & \verb|=>| & Greater than or equal to  & \verb|expr >= expr| \\
+    \hline
+    \hline
+    Left & \verb|==| & Equality & \verb|expr == expr| \\
+    \hline
+    Left & \verb|!=| & Inequality & \verb|expr != expr| \\
+    \hline
+    \hline
+    Left & \verb|&&| & Logical AND & \verb|expr && expr| \\
+    \hline
+    \hline
+    Left & \verb=||= & Logical OR & \verb=expr || expr= \\
+    \hline
+  \end{tabular}
 \end{center}
 Logical AND and logical OR only evaluate the right operand if and only if the left operand doesn't determine the result of the condition.
 For logical AND, the right operand gets evaluated if the left side is \verb|true|.
@@ -827,8 +827,8 @@ We need to be liberal with parentheses to stop this being an issue.
 Compound assignment is taking an established variable and assigning it to the value of itself plus some object.
 This is particularly used in arithmetic types.
 \begin{itemize}
-	\item Arithmetic compound assignment: \verb|+=|, \verb|-=|, \verb|*=|, \verb|/=|, \verb|%=|
-	\item Bitwise compound assignment: \verb|<<=|, \verb|>>=|, \verb|&=|, \verb|^=|
+  \item Arithmetic compound assignment: \verb|+=|, \verb|-=|, \verb|*=|, \verb|/=|, \verb|%=|
+  \item Bitwise compound assignment: \verb|<<=|, \verb|>>=|, \verb|&=|, \verb|^=|
 \end{itemize}
 \section{Increment and Decrement Operator}
 There are prefix and postfix increment/decrement operators.
@@ -863,23 +863,23 @@ This can get complicated fast so it's recommended to only use 2-3 conditionals i
 Bitwise operators allow us to operate on the individual bits of an object.
 This is helpful for some specific situations and is good practice to be aware of.
 \begin{center}
-	\begin{tabular}{ |c|c|c| }
-		\hline
-		\textbf{Operator} & \textbf{Function} & \textbf{Use} \\
-		\hline
-		\verb|~| & Bitwise NOT & \verb|~expr| \\
-		\hline
-		\verb|<<| & Left shift & \verb|expr1 << expr2| \\
-		\hline
-		\verb|>>| & Right shift & \verb|expr1 >> expr2| \\
-		\hline
-		\verb|&| & Bitwise AND & \verb|expr1 & expr2| \\
-		\hline
-		\verb|^| & Bitwise XOR & \verb|expr1 ^ expr2| \\
-		\hline
-		\verb=|= & Bitwise OR & \verb=expr1 | expr2= \\
-		\hline
-	\end{tabular}
+  \begin{tabular}{ |c|c|c| }
+    \hline
+    \textbf{Operator} & \textbf{Function} & \textbf{Use} \\
+    \hline
+    \verb|~| & Bitwise NOT & \verb|~expr| \\
+    \hline
+    \verb|<<| & Left shift & \verb|expr1 << expr2| \\
+    \hline
+    \verb|>>| & Right shift & \verb|expr1 >> expr2| \\
+    \hline
+    \verb|&| & Bitwise AND & \verb|expr1 & expr2| \\
+    \hline
+    \verb|^| & Bitwise XOR & \verb|expr1 ^ expr2| \\
+    \hline
+    \verb=|= & Bitwise OR & \verb=expr1 | expr2= \\
+    \hline
+  \end{tabular}
 \end{center}
 Operands are always converted to the larger integral type if possible before bitwise operations take place.
 This includes regular \verb|int| type and character literals.
@@ -906,8 +906,8 @@ The \verb|sizeof| operator returns the size of an expression or type name.
 It is a constant expression of type \verb|size_t|.
 
 \begin{center}
-	\verb|sizeof (type)| \\
-	\verb|sizeof expr| \\
+  \verb|sizeof (type)| \\
+  \verb|sizeof expr| \\
 \end{center}
 The value returned for \verb|sizeof expr| is the size of the type returned by the expression.
 The \verb|sizeof| operator does not evaluate the operand, contrary to many functions.
@@ -933,21 +933,21 @@ Generally you can convert positive signed values to an unsigned common type.
 
 \subsection{Implicit Conversions}
 \begin{itemize}
-	\item \textbf{Array to pointer} - Arrays are automatically converted to a pointer to the first element in an array.
-		This isn't used when the array is used with \verb|decltype| or as the operand of address-of, \verb|sizeof|, or \verb|typeid| operators. \\
-	\item \textbf{Pointer Conversion} - Constant integral value of 0 and the literal \verb|nullptr| can be converted to any pointer type.
-		Any pointer to a nonconst type can be converted to \verb|void*|.
-		Any pointer can be converted to a \verb|const verb*|. \\
-	\item \textbf{Conversions to bool} - Any pointer or arithmetic value of 0 is converted to false, any other value is true. \\
-	\item \textbf{Conversion to const} - Can convert a pointer to a nonconst to a \verb|const| pointer.
-		The same holds true for a reference.
-	\item \textbf{Conversion Defined by Class Types} - Class types can define their own conversions.
-		This is limited to one conversion at a time however.
+  \item \textbf{Array to pointer} - Arrays are automatically converted to a pointer to the first element in an array.
+    This isn't used when the array is used with \verb|decltype| or as the operand of address-of, \verb|sizeof|, or \verb|typeid| operators. \\
+  \item \textbf{Pointer Conversion} - Constant integral value of 0 and the literal \verb|nullptr| can be converted to any pointer type.
+    Any pointer to a nonconst type can be converted to \verb|void*|.
+    Any pointer can be converted to a \verb|const verb*|. \\
+  \item \textbf{Conversions to bool} - Any pointer or arithmetic value of 0 is converted to false, any other value is true. \\
+  \item \textbf{Conversion to const} - Can convert a pointer to a nonconst to a \verb|const| pointer.
+    The same holds true for a reference.
+  \item \textbf{Conversion Defined by Class Types} - Class types can define their own conversions.
+    This is limited to one conversion at a time however.
 \end{itemize}
 
 \subsection{Explicit Conversions}
 \begin{center}
-	\verb|cast_name<type>(expr)|
+  \verb|cast_name<type>(expr)|
 \end{center}
 Sometimes we would like to explicitly convert objects.
 This can be done with \emph{casts}.
@@ -975,11 +975,11 @@ They can lead to a multitude of errors and problems that are hard to diagnose.
 
 \section{Notes}
 \begin{itemize}
-	\item C++ has a variety of expressions that apply to the built-in types. 
-	\item Expressions have precedence and associativity. 
-		Precedence determines how operators are grouped in compound expressions.
-		Associativity determines how operators in the same precedence are grouped.
-	\item Type conversion is usually implied.
+  \item C++ has a variety of expressions that apply to the built-in types. 
+  \item Expressions have precedence and associativity. 
+    Precedence determines how operators are grouped in compound expressions.
+    Associativity determines how operators in the same precedence are grouped.
+  \item Type conversion is usually implied.
 \end{itemize}
 \chapter{Statements}
 \section{Simple Statements}
@@ -1008,12 +1008,12 @@ This can be fixed by using curly braces for every \verb|if| statement and using 
 The \verb|switch| statement allows one to conditionally run something based on the result of an expression.
 It allows us to choose from a variety of cases.
 \begin{lstlisting}[language=C++]
-	switch (expr){
-		case const integral:
-			expr
-		default:
-			expr
-	}
+    switch (expr){
+        case const integral:
+            expr
+        default:
+            expr
+    }
 \end{lstlisting}
 C++ will execute attempt to execute each case without intervention.
 To solve this it is always recommended to \verb|break| at the end of each case label to prevent unwanted action.
@@ -1025,21 +1025,42 @@ Iterative statements, usually called \emph{loops}, provide for repeated executio
 \subsection{while Statement}
 The \verb|while| statement executes a target statement as long as a condition is true:
 \begin{lstlisting}[language=C++]
-	while (condition)
-		statement
+    while (condition)
+        statement
 \end{lstlisting}
 The statement is usually in a block, and is executed as long as the condition evaluates as true.
 As soon as the condition is evaluated as false the statement is not executed.
 It is never executed if the condition is never evaluated as true.
 
 A \verb|while| loop is generally to read data indefinitely like when reading input.
-hkjfhdsjkfh
-hjkfdlshjfd
+
+\subsection{for Statement}
+\begin{lstlisting}[language=C++]
+  for (init-statement condition; expression)
+    statement
+\end{lstlisting}
+\begin{lstlisting}[language=C++]
+  for (initializer; condition; expression)
+    statement
+\end{lstlisting}
+The \verb|for| statement takes an initial condition and some sort of expression that creates a loop.
+The variables created in the \verb|for| header must all be the same type.
+We can also skip parts of the \verb|for| header:
+\begin{lstlisting}[language=C++]
+  for (int i = 0; /* no condition */; ++i)
+\end{lstlisting}
+The code in the for loop must find a way outside of the loop since there's no condition.
+
+\subsection{Range for Statement}
+A range \verb|for| statement is designed to iterate over a container or some other sequence.
+\begin{lstlisting}[language=C++]
+  for (delaration : expression)
+    statement
+\end{lstlisting}
+The expression must represent a sequence, such as a braced initialized list, an array or an object such as a \verb|vector|.
+The declaration defines a variable.
+This variable must be able to be converted to the type of each element in the sequence.
 
 
-
- \end{document} 
-
-
-
+\end{document} 
 
