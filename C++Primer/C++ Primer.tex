@@ -1060,6 +1060,19 @@ A range \verb|for| statement is designed to iterate over a container or some oth
 The expression must represent a sequence, such as a braced initialized list, an array or an object such as a \verb|vector|.
 The declaration defines a variable.
 This variable must be able to be converted to the type of each element in the sequence.
+Thus using thing \verb|auto| type specifier is recommended.
+The variable is declared and processed on each loop.
+The ranged \verb|for| loop has a limitation, the \verb|end()| value is cached while the loop is being processed.
+We cannot add or remove elements that we are processing for this reason.
+\subsection{do while Loop}
+The \verb|do while| loop like a \verb|while| loop but the condition is tested after the statement body completes.
+It is executed at least once.
+\begin{lstlisting}[language=C++]
+  do
+    statement
+  while (condition);
+\end{lstlisting}
+We cannot declare a variable within the condition.
 
 
 \end{document} 
