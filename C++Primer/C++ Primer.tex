@@ -1073,6 +1073,22 @@ It is executed at least once.
   while (condition);
 \end{lstlisting}
 We cannot declare a variable within the condition.
+\section{Jump Statements}
+Jump statements allow us to interrupt the flow of execution.
+There are 4 main types, \verb|break|, \verb|continue|, \verb|goto|, and \verb|return|.
+
+\subsection{The break Statement}
+This statement terminates the nearest enclosing \verb|while|, \verb|do while|, \verb|for|, or \verb|switch| statement.
+In a statement nested within one of these statements, it will only terminate the one that is called within the same level.
+\subsection{The continue Statement}
+This statement terminates the current iteration of a loop and then starts the next loop.
+\subsection{The goto Statement}
+This statement allows us to unconditionally jump.
+\begin{lstlisting}[language=C++]
+  goto label;
+  label: ...
+\end{lstlisting}
+We can jump as often as possible, but be aware of scope and variable initialization and declaration.
 
 
 \end{document} 
