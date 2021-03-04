@@ -1089,6 +1089,19 @@ This statement allows us to unconditionally jump.
   label: ...
 \end{lstlisting}
 We can jump as often as possible, but be aware of scope and variable initialization and declaration.
+\section{Exception Handling}
+Exceptions are run-time anomalies that interrupt the program in unexpected ways.
+For C++ this uses 3 components:
+\begin{itemize}
+\item \verb|throw| expressions: detects the exception
+\item \verb|try| blocks: deals with the exception, handled by \verb|catch| clauses. Also known as exception handlers
+\item \verb|exception| classes: used to pass info about what happened between a \verb|throw| and an associated \verb|catch|
+\end{itemize}
+\subsection{throw Expression}
+\begin{lstlisting}[language=C++]
+  throw expresion;
+\end{lstlisting}
+Type \verb|runtime_error| is a standard \verb|throw| type, and must be initialized with a \verb|string| or C-style character string.
 
 
 \end{document} 
