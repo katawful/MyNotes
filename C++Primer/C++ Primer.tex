@@ -1102,6 +1102,57 @@ For C++ this uses 3 components:
   throw expresion;
 \end{lstlisting}
 Type \verb|runtime_error| is a standard \verb|throw| type, and must be initialized with a \verb|string| or C-style character string.
+\subsection{try Block}
+\begin{lstlisting}[language=C++]
+  try {
+    program-statements
+  } catch (exception-declaration) {
+    handler-statements
+  } catch (exception-declaration) {
+    handler-statements
+  } //...
+\end{lstlisting}
+The \verb|try| block handles the exceptions.
+We can have as many \verb|catch| statements as possible.
+A good way to write a \verb|catch| statement is to use the \verb|runtime_error| type from a \verb|throw| expression.
+While searching for the handler, functions are exited.
+This can lead to exiting an entire program if enough handlers are searched for.
+\subsection{Standard Exceptions}
+\begin{center}
+  \begin{tabular}{ |c|p{0.7\columnwidth}| }
+    \hline
+    \multicolumn{2}{|c|}{\textbf{Standard Exception Classes Defined in }stdexcept} \\
+  \hline
+  \textbf{Class}& \textbf{Use} \\
+  \hline
+  \verb|exception| & The most general kind of problem \\
+  \hline
+  \verb|runtime_error| & Problem that can be detected only at runtime \\
+  \hline
+  \verb|range_error| & Run-time error: result generated outside the range of values that are meaningful \\
+  \hline
+  \verb|overflow_error| & Run-time error: computation that overflowed \\
+  \hline
+  \verb|underflow_error| & Run-time error: computation that underflowed \\
+  \hline
+  \verb|logic_error| & Error in the logic of the program \\
+  \hline
+  \verb|domain_error| & Logic-error: argument for which no result exists \\
+  \hline
+  \verb|invalid_argument| & Logic-error: inappropriate argument \\
+  \hline
+  \verb|length_error| & Logic error: attempt to create and object larger than the maximum size for that type \\
+  \hline
+  \verb|out_of_range| & Logic error: used a value outside of the valid range \\
+  \hline
+    
+  \end{tabular}
+\end{center}
+Only \verb|exception|, \verb|bad_alloc|, and \verb|bad_cast| exception types can be default initialized.
+We also cannot initialize them with any object.
+The other types \emph{must} be initialized with a \verb|string| or C-style string.
+Exception types only define one operation, \verb|what|.
+This function returns a \verb|const char*| that points to a C-style string to provide info on the exception being thrown.
 
 
 \end{document} 
