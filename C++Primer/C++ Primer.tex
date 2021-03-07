@@ -1153,6 +1153,22 @@ We also cannot initialize them with any object.
 The other types \emph{must} be initialized with a \verb|string| or C-style string.
 Exception types only define one operation, \verb|what|.
 This function returns a \verb|const char*| that points to a C-style string to provide info on the exception being thrown.
+\chapter{Functions}
+Functions is a block of code with a name, it is executed by calling the function.
+\section{Functions Basics}
+Functions normally consists of a return type, a name, a list of zero or more parameters, and a body.
+\begin{lstlisting}[language=C++]
+  type function_name(p1, p2, ... pn) {
+    body...
+    return;
+  }
+\end{lstlisting}
+We call the function in code by using the call operator, which takes an expression that is a function or points to a function.
+Parameters and their respective arguments must be the correct type or possible to convert to the parameter type.
+The parameter can be empty, but it must exist.
+We can explicitly make use \verb|void| to declare no parameters.
+For multiple parameters, the type of each parameter must be declared even if all the types are the same.
+The return type can be any type, including \verb|void|, but not an array type or a function type.
 
 
 \end{document} 
