@@ -1169,6 +1169,13 @@ The parameter can be empty, but it must exist.
 We can explicitly make use \verb|void| to declare no parameters.
 For multiple parameters, the type of each parameter must be declared even if all the types are the same.
 The return type can be any type, including \verb|void|, but not an array type or a function type.
+\subsection{Local Objects}
+Names have scope and objects have lifetimes.
+The scope of a name is the part of the program's text in which that name is visible.
+The lifetime of an object is the time during the program's execution that the object exists.
+Parameters and variables defined inside a function body are local variables, they are local to that function.
+The lifetime of local variables depend on its definition.
+
 
 
 \end{document} 
