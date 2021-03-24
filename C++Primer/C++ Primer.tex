@@ -1164,7 +1164,7 @@ Functions normally consists of a return type, a name, a list of zero or more par
   }
 \end{lstlisting}
 We call the function in code by using the call operator, which takes an expression that is a function or points to a function.
-Parameters and their respective arguments must be the correct type or possible to convert to the parameter type.
+Parameters and their respectiv arguments must be the correct type or possible to convert to the parameter type.
 The parameter can be empty, but it must exist.
 We can explicitly make use \verb|void| to declare no parameters.
 For multiple parameters, the type of each parameter must be declared even if all the types are the same.
@@ -1175,6 +1175,29 @@ The scope of a name is the part of the program's text in which that name is visi
 The lifetime of an object is the time during the program's execution that the object exists.
 Parameters and variables defined inside a function body are local variables, they are local to that function.
 The lifetime of local variables depend on its definition.
+Objects that exist only while a block is executing are automatic objects.
+After the block, these values of these objects are undefined.
+Parameters are automatic objects for instance.
+
+\verb|static| variables are variables that exist, once defined, until the program terminates.
+Each local \verb|static| object is initialized before the first time execution passed through the object's definition
+\section{Argument Passing}
+A parameter that is a reference is bound to its argument.
+It is called "passed by reference", or the function is "called by reference".
+When the argument value is copied (i.e. when the parameter is not a reference), the parameter and argument are independent objects.
+We say that these arguments are "passed by value" or that the function is "called by value".
+
+\subsection{Passing Arguments by Value}
+Passing an argument as a value copies the value from the original object.
+The original object is never manipulated.
+We can use pointers to give us indirect access to the original object.
+Using pointer parameters is a C standard, for C++ reference parameters are preferred.
+\subsection{Passing Arguments by Reference}
+Reference parameters use references, and are advantageous because they are attached to the object they reference.
+This means we can directly pass objects to a function, unlike with pointers which need the address.
+We are avoiding creating copies of the objects when using references, which is helpful when dealing with large class types or containers.
+Some class types cannot be copied as well.
+Reference parameters also allow us to effectively return multiple results.
 
 
 
