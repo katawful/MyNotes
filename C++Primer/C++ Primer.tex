@@ -1198,8 +1198,12 @@ This means we can directly pass objects to a function, unlike with pointers whic
 We are avoiding creating copies of the objects when using references, which is helpful when dealing with large class types or containers.
 Some class types cannot be copied as well.
 Reference parameters also allow us to effectively return multiple results.
-
-
+\subsection{const Parameters and Arguments}
+Top-level \verb|const|s are ignored when we copy an argument to initialize a parameter.
+However, low-level \verb|const|s are not ignored, thus we cannot loosely pass values.
+It is good practice to use references to \verb|const| as parameters wherever possible.
+This gives the good impression of what the function does to the function's caller.
+This also allows us to pass more object types to the function than just using a non-\verb|const|.
 
 \end{document} 
 
